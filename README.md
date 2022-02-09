@@ -1,5 +1,5 @@
-# Proyecto de Estructuras de Datos
-## JINX
+# JINX
+## Proyecto de Estructuras de Datos
 **Creado por:** 
 - Esteban Samayoa
 - Nickolas Nolte
