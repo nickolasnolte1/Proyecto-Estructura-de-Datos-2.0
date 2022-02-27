@@ -43,13 +43,11 @@ a {
   position: relative;
   width: 435px; }
 
-.logo1{
-
+#logo1{
+  width:100px;
+  height:100px;
   position:relative;
-  size: 10%;
-  width:50%;
-  height:50%;
-
+  left:35%;
 }
 
 form {
@@ -57,7 +55,7 @@ form {
   position: relative;
   z-index: 9;
   padding: 77px 61px 66px;
-  background: #fff;
+  background: white;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
