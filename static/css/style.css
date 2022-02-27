@@ -21,8 +21,6 @@ input, textarea, select, button {
 p, h1, h2, h3, h4, h5, h6, ul {
   margin: 0; }
 
-img {
-  max-width: 100%; }
 
 ul {
   padding-left: 0;
@@ -45,16 +43,10 @@ a {
   position: relative;
   width: 435px; }
 
-.image-1 {
-  position: absolute;
-  bottom: -12px;
-  left: -191px;
-  z-index: 99; }
-
-.image-2 {
-  position: absolute;
-  bottom: 0;
-  right: -129px; }
+.logo1{
+  width:5px;
+  height:1px;
+}
 
 form {
   width: 100%;
