@@ -44,8 +44,8 @@ a {
   width: 435px; }
 
 .logo1{
-  width:5px;
-  height:1px;
+  position:relative;
+  size: 10%;
 }
 
 form {
