@@ -7,7 +7,7 @@ import psycopg2
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/signup')
 def homepage():
     return render_template('index.html')
 

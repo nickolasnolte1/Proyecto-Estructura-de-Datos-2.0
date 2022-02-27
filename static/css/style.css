@@ -47,7 +47,8 @@ a {
   width:100px;
   height:100px;
   position:relative;
-  left:35%;
+  left:30%;
+  top:-20px;
 }
 
 form {
