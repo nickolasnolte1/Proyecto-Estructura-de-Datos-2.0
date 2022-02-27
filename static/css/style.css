@@ -43,9 +43,18 @@ a {
   position: relative;
   width: 435px; }
 
+<<<<<<< HEAD
 .logo1{
   width:50%;
   height:50%;
+=======
+#logo1{
+  width:100px;
+  height:100px;
+  position:relative;
+  left:30%;
+  top:-20px;
+>>>>>>> 3a18f60fc39328117d1c8a5d10d400c20dfa8f0e
 }
 
 form {
