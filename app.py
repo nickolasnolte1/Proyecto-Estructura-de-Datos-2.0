@@ -6,18 +6,18 @@ from sympy import true
 from functions import crear_usuario
 
 app = Flask(__name__)
-users=[]
 
 @app.route('/' , methods = ["GET", "POST"])
-def homepage():
-    if (request.method=="POST"):
-        username = request.form['username']
-        email=request.form['email']
-        password=request.form['password']
-        confirm=request.form['confirm']
+def signup():
+    if request.method=="POST":
+        users=[]
+        username = request.args.get("username")
+        email = request.args.get("email")
+        password = request.args.get("password")
+        confirm=request.args.get("confirm")
         if password==confirm:
-            users=crear_usuario(users, username, email, password)
-            return redirect('http://localhost:8000/categories', code=302)
+            #users=crear_usuario(users,username,email,password)
+            return redirect("localhost:8000/categories")
     return render_template('signup.html')
 
 @app.route('/categories')
