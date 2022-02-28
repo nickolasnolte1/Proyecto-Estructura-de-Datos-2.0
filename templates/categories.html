@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html land = "en">
 <head>
+
+
+        <!-- LINEARICONS -->
+    <link rel="stylesheet" href="/static/fonts/linearicons/style.css">
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
    <style>
+
        html, body {
 	        margin: 0;
 	        padding: 0;
@@ -34,6 +42,10 @@
             right: 0px;
             margin: 0px auto;
         }
+
+
+
+        
         input[type=checkbox] {
             display: none;
         }
@@ -112,12 +124,15 @@
    
 </head>
 <body>
-        <div class="tasks">
-        <form method="post">
-            <!-- title -->
-            <h1>¡Escoge tus intereses!</h1>
-            <!-- task 1 -->
-            <input id='label-1' type='checkbox' name="1" value="1"/>
+
+
+
+    <div class="wrapper">
+        <div class="inner">
+            <form action="">
+                <img src="/static/images/wolf1.png" alt="" id="logo1">
+                <h3>¡Escoge tus intereses!</h3>
+                <input id='label-1' type='checkbox' name="1" value="1"/>
             <label for='label-1'>
             <h2>Política
                 <span>Debates, Noticias &amp; Discusiones</span>
@@ -155,11 +170,11 @@
             <input id='label-6' type='checkbox' name="6" value="6"/>
             <label for='label-6'>
             <h2>Programación
-                <span>Lenguajes, Diseño &amp; Bases de Datos</span>
+                <span>Lenguajes, Diseño &amp; Estructuras de Datos</span>
             </h2>   
             </label>
             <input type="submit">
-        </form>
+            </form>
         </div>
-</body>
-</html>
+
+    </div>
