@@ -3,8 +3,9 @@ from flask.wrappers import Request
 from jinja2 import Template, FileSystemLoader, Environment
 from typing import Dict, Text
 import psycopg2
+import 
 
-
+users=
 app = Flask(__name__)
 
 @app.route('/')
@@ -17,9 +18,15 @@ def categories():
 
 @app.route('/', methods=['POST'])
 def my_form_post():
-    text = request.form['username']
-    processed_text = text.upper()
-    return processed_text
+    username = request.form['username']
+    email=request.form['email']
+    password=request.form['password']
+    confirm=request.form['confirm']
+    if password==confirm:
+        
+        return username, email, password
+    else:
+        return "error"
 
 
 
