@@ -11,6 +11,10 @@ app = Flask(__name__)
 def homepage():
     return render_template('index.html')
 
+@app.route('/categories')
+def categories():
+    return render_template('categories.html')
+
 
 if __name__ == "__main__":
     app.run(host="localhost", port = 8000, debug=True)

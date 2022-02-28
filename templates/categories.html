@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html land = "en">
+<head>
+   <style>
+       html, body {
+	        margin: 0;
+	        padding: 0;
+	        border: 0;
+	        font-size: 100%;
+        }
+        /* body */
+        body{
+            background-image: url('/static/images/connection.jpg');
+            background-repeat: no-repeat;
+            font-family: sans-serif;
+            border-top: 5px solid #8a1111;
+            background-size: 1500px 850px;
+        }
+        /* title */
+        h1{
+            color: #ffff;
+            text-align: center;
+            font-size: 35px;
+            font-weight: 900;
+            text-shadow: 2px 2px black;
+        }
+/* tasks */
+        .tasks{
+            width: 300px;
+            height: 405px;
+            position: absolute;
+            top: 20%;
+            left: 0px; 
+            right: 0px;
+            margin: 0px auto;
+        }
+        input[type=checkbox] {
+            display: none;
+        }
+        label{
+        background: #fff;
+        height: 69px;
+        width: 100%;
+        display: block;
+        border-bottom: 1px solid #2C3E50;
+        color: #CF1B1B;
+        text-transform: capitalize;
+        font-weight: 900;
+        font-size: 11px;
+        letter-spacing: 1px;
+        text-indent: 20px;
+        cursor: pointer;
+        transition: all 0.7s ease;
+        position: relative;
+        padding: 5px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        }
+        label h2 span{
+        display: block;
+        font-size: 12px;
+        text-transform: capitalize;
+        font-weight: normal;
+        color: rgb(131, 5, 5);
+        }
+        label:before{
+        content:"";
+        width: 20px;
+        height: 20px;
+        background: #fff;
+        display: block;
+        position: absolute;
+        border-radius: 100%;
+        right: 20px;
+        top: 30%;
+        transition: border 0.7s ease
+        }
+        #label-1:checked ~ label[for=label-1],
+        #label-2:checked ~ label[for=label-2],
+        #label-3:checked ~ label[for=label-3],
+        #label-4:checked ~ label[for=label-4],
+        #label-5:checked ~ label[for=label-5],
+        #label-6:checked ~ label[for=label-6]{
+        background: #CF1B1B;
+        border-bottom: 1px solid #34495E;
+        color: #fff;
+        }
+        #label-1:checked ~ label[for=label-1] h2 span,
+        #label-2:checked ~ label[for=label-2] h2 span,
+        #label-3:checked ~ label[for=label-3] h2 span,
+        #label-4:checked ~ label[for=label-4] h2 span,
+        #label-5:checked ~ label[for=label-5] h2 span,
+        #label-6:checked ~ label[for=label-6] h2 span{
+        color: #f0eeda;
+        }
+        #label-1:checked ~ label[for=label-1]:before,
+        #label-2:checked ~ label[for=label-2]:before,
+        #label-3:checked ~ label[for=label-3]:before,
+        #label-4:checked ~ label[for=label-4]:before,
+        #label-5:checked ~ label[for=label-5]:before, 
+        #label-6:checked ~ label[for=label-6]:before{
+            background: url("https://i.imgur.com/eoPQ05r.png") no-repeat center center;
+        }
+   </style>
+   <link  rel="stylesheet" href = "{{csss}}">
+
+   
+</head>
+<body>
+        <div class="tasks">
+        <form method="post">
+            <!-- title -->
+            <h1>Escoge tus intereses</h1>
+            <!-- task 1 -->
+            <input id='label-1' type='checkbox' name="1" value="1"/>
+            <label for='label-1'>
+            <h2>Programacion
+                <span>Lenguajes, Diseño &amp; Base de datos</span>
+            </h2>   
+            </label>
+            <!-- task 2 -->
+            <input id='label-2' type='checkbox' name="2" value="2"/>
+            <label for='label-2'>
+            <h2>Diseño
+                <span>planos &amp; diseño de interiores</span>
+            </h2>   
+            </label>
+            <!-- task 3 -->
+            <input id='label-3' type='checkbox' name="3" value="3"/>
+            <label for='label-3'>
+            <h2>Estudio de Mercado
+                <span>Investigacion &amp; Analisis</span>
+            </h2>   
+            </label>
+            <!-- task 4 -->
+            <input id='label-4' type='checkbox' name="4" value="4"/>
+            <label for='label-4'>
+            <h2>Campañas de Publicidad
+                <span>Analisis &amp; Estrategia de precios</span>
+            </h2>   
+            </label>
+            <!-- task 5 -->
+            <input id='label-5' type='checkbox' name="5" value="5"/>
+            <label for='label-5'>
+            <h2>Matemáticas
+                <span>Solucion de problemas</span>
+            </h2>   
+            </label>
+            <!-- task 6 -->
+            <input id='label-6' type='checkbox' name="6" value="6"/>
+            <label for='label-6'>
+            <h2>Circuitos
+                <span>Protoboards &amp; Diseños digitales</span>
+            </h2>   
+            </label>
+            <input type="submit">
+        </form>
+        </div>
+</body>
+</html>
