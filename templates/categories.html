@@ -3,7 +3,7 @@
 <head>
 
 
-        <!-- LINEARICONS -->
+    <!-- LINEARICONS -->
     <link rel="stylesheet" href="/static/fonts/linearicons/style.css">
 
     <!-- STYLE CSS -->
@@ -43,7 +43,10 @@
             margin: 0px auto;
         }
 
-
+        .button2{
+            margin-top: 39px;
+          }
+        
 
         
         input[type=checkbox] {
@@ -100,7 +103,7 @@
         #label-6:checked ~ label[for=label-6]{
         background: rgba(52, 152, 253, 0.25);
         border-bottom: 1px solid #34495E;
-        color: yellow;
+        color: #34495E;
         }
         #label-1:checked ~ label[for=label-1] h2 span,
         #label-2:checked ~ label[for=label-2] h2 span,
@@ -108,7 +111,7 @@
         #label-4:checked ~ label[for=label-4] h2 span,
         #label-5:checked ~ label[for=label-5] h2 span,
         #label-6:checked ~ label[for=label-6] h2 span{
-        color: #f0eeda;
+        color: #2666CF;
         }
         #label-1:checked ~ label[for=label-1]:before,
         #label-2:checked ~ label[for=label-2]:before,
@@ -119,14 +122,9 @@
             background: url("https://i.imgur.com/eoPQ05r.png") no-repeat center center;
         }
    </style>
-   <link  rel="stylesheet" href = "{{csss}}">
 
-   
 </head>
 <body>
-
-
-
     <div class="wrapper">
         <div class="inner">
             <form action="">
@@ -170,10 +168,12 @@
             <input id='label-6' type='checkbox' name="6" value="6"/>
             <label for='label-6'>
             <h2>Programación
-                <span>Lenguajes, Diseño &amp; Estructuras de Datos</span>
+                <span>Lenguajes, Diseño &amp; Estructuras</span>
             </h2>   
+            <button class="button2">
+                <span>SUBMIT</span>
+            </button>
             </label>
-            <input type="submit">
             </form>
         </div>
 
