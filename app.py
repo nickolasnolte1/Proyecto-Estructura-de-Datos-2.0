@@ -3,9 +3,9 @@ from flask.wrappers import Request
 from jinja2 import Template, FileSystemLoader, Environment
 from typing import Dict, Text
 import psycopg2
-import 
+from functions import crear_usuario
 
-users=
+users=[]
 app = Flask(__name__)
 
 @app.route('/')
@@ -23,8 +23,8 @@ def my_form_post():
     password=request.form['password']
     confirm=request.form['confirm']
     if password==confirm:
-        
-        return username, email, password
+        users=crear_usuario(users, username, email, password)
+        return users
     else:
         return "error"
 
