@@ -26,12 +26,18 @@ class User(NamedTuple):
     posts: LinkedList
 
 
-def crear_usuario(users, username, email, password):
+def crear_usuario(username, email, password):
     interests=[]
     posts=LinkedList()
     a=User(username,email, password, interests, posts)
-    users.append(a)
-    return users
+    return a
+
+def agregar_intereses(user, interests):
+    print(user.interests)
+    for i in interests:
+        user.interests.append(i)
+    return user
+
 
 
 
