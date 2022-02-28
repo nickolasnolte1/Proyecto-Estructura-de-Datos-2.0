@@ -9,11 +9,18 @@ app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-    return render_template('index.html')
+    return render_template('signup.html')
 
 @app.route('/categories')
 def categories():
     return render_template('categories.html')
+
+@app.route('/', methods=['POST'])
+def my_form_post():
+    text = request.form['username']
+    processed_text = text.upper()
+    return processed_text
+
 
 
 if __name__ == "__main__":
