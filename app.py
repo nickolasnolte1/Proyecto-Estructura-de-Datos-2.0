@@ -17,7 +17,7 @@ def signup():
         confirm=request.args.get("confirm")
         if password==confirm:
             #users=crear_usuario(users,username,email,password)
-            return redirect("localhost:8000/categories")
+            return redirect ("localhost:8000/categories")
     return render_template('signup.html')
 
 @app.route('/categories')
