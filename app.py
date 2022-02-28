@@ -1,15 +1,23 @@
 from flask import Flask, render_template, request, url_for, redirect
 from flask.wrappers import Request
 from jinja2 import Template, FileSystemLoader, Environment
-from typing import Dict, Text
-import psycopg2
 from functions import crear_usuario
 
 users=[]
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/' , methods = ["GET", "POST"])
 def homepage():
+    if (request.method=="POST"):
+        username = request.form['username']
+        email=request.form['email']
+        password=request.form['password']
+        confirm=request.form['confirm']
+        if password==confirm:
+            users=crear_usuario(users, username, email, password)
+            return "si se pudo"
+        else:
+            return "error"
     return render_template('signup.html')
 
 @app.route('/categories')
@@ -24,7 +32,7 @@ def my_form_post():
     confirm=request.form['confirm']
     if password==confirm:
         users=crear_usuario(users, username, email, password)
-        return users
+        return "si se pudo"
     else:
         return "error"
 
