@@ -29,3 +29,16 @@
     * Programación
 
 * Realizar un post en la página de feed.
+
+
+
+# Diagrama de casos de uso
+<img width="309" alt="image" src="https://user-images.githubusercontent.com/61555652/156281522-342a7b70-77ba-4d10-b6c9-2dcee6c31581.png">
+
+# Profiling 
+
+
+
+
+
+# Unit Testing
