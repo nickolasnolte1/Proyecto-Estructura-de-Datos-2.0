@@ -25,17 +25,12 @@ def categories(user_id):
             return redirect(url_for('home', user_id=user_id))
     return render_template('categories.html')
 
-<<<<<<< Updated upstream
-@app.route('/homepage/')
-def home():
-    return render_template('homepage.html')
-=======
 
 @app.route('/homepage/<user_id>')
 def home(user_id):
     username, email, password, interests,=printear_informacion(users,int(user_id))
     return render_template('homepage.html', username=username, email=email, password=password, interests=interests)
->>>>>>> Stashed changes
+
 
 if __name__ == "__main__":
     app.run(host="localhost", port = 8000, debug=True)
