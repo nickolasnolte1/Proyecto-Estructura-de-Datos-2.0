@@ -7,6 +7,7 @@
 - Nickolas Nolte
 
 
+**Jinx es una red social donde los usuarios crearán una cuenta, un perfil y podrán publicar en un feed sus pensamientos, ideas, temas de discusión, etc. La idea es que las personas puedan interactuar y expresarse libremente por medio de texto.**
 
 
 
