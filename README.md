@@ -1,5 +1,6 @@
 # JINX
-<img width="309" alt="image" src="https://user-images.githubusercontent.com/61555652/156280239-106b016d-57de-48ae-b052-892824faaa1a.png">
+<img width="435" alt="image" src="https://user-images.githubusercontent.com/61555652/156282205-f4f177da-ecc2-4387-97a9-9c743c38f15a.png">
+
 
 ## Proyecto de Estructuras de Datos creado en Python y HTML
 **Creado por:** 
