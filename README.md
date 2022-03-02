@@ -1,16 +1,16 @@
 # JINX
 <img width="309" alt="image" src="https://user-images.githubusercontent.com/61555652/156280239-106b016d-57de-48ae-b052-892824faaa1a.png">
 
-## Proyecto de Estructuras de Datos
+## Proyecto de Estructuras de Datos creado en Python y HTML
 **Creado por:** 
 - Esteban Samayoa
 - Nickolas Nolte
 
-## Jinx es una red social en la cual las personas pueden 
 
 
 
-**La aplicación cuenta con las siguientes funcionalidades:** 
+
+## La aplicación cuenta con las siguientes funcionalidades:
 
 *   Crear un perfil a través de la página de Signup 
     * Username
