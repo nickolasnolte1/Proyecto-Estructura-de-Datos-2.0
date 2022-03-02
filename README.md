@@ -11,3 +11,21 @@
 
 
 **La aplicación cuenta con las siguientes funcionalidades:** 
+
+*   Crear un perfil a través de la página de Signup 
+  * Username
+  * Correo
+  * Contraseña
+  * Confirmar la contraseña
+
+*   Ingresar a la aplicación a tarvés de la página de SignIn 
+
+*   Elegir los temas que más le interesan a la persona. Puede elegir entre:
+  * Política 
+  * Cine 
+  * Deportes 
+  * Música
+  * Arte
+  * Programación
+
+* Realizar un post en la página de feed.
