@@ -8,4 +8,4 @@
 
 
 
-###### **La aplicación cuenta con las siguientes funcionalidades:** 
+**La aplicación cuenta con las siguientes funcionalidades:** 
