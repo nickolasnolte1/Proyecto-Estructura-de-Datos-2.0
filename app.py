@@ -28,8 +28,8 @@ def categories(user):
             return redirect(url_for('home', user=user))
     return render_template('categories.html')
 
-@app.route('/homepage/<user>')
-def home(user):
+@app.route('/homepage/')
+def home():
     return render_template('homepage.html')
 
 if __name__ == "__main__":
