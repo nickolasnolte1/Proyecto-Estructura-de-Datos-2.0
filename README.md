@@ -4,10 +4,8 @@
 - Esteban Samayoa
 - Nickolas Nolte
 
-## Detalles de la página
+## Jinx es una red social en la cual las personas pueden 
 
 
-## Descripción de las funciones de la página
 
-
-###### **El menú permite realizar las siguientes funciones:** 
+###### **La aplicación cuenta con las siguientes funcionalidades:** 
