@@ -4,17 +4,144 @@
 		<title>JINX (sign up)</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    </head>
 
-    
-	</head>
-
+    <link rel="stylesheet" href="/static/css/style2.css">
 
     <body>
-        <h2>HOMEPAGE</h2>
-        <h3>Username: {{username}}</h3>
-        <h3>Email: {{email}}</h3>
-        <h3>Password: {{password}}</h3>
-        <h3>Interests:{{interests}}</h3>
-        
+        <div class="wrapper">
+        <div class="inner">
+            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+            <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="leftMenu">
+                <button onclick="closeLeftMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
+                <h2 style="text-align:center">Información de pérfil</h2>
+
+                <div>
+                <h1>Username: {{username}}</h1>
+                <p class="title">Email: {{email}}</p>
+                <p>Intereses: {{interests}}</p>
+                <div style="margin: 24px 0;">
+                    <a href="#"><i class="fa fa-dribbble"></i></a> 
+                    <a href="#"><i class="fa fa-twitter"></i></a>  
+                    <a href="#"><i class="fa fa-linkedin"></i></a>  
+                    <a href="#"><i class="fa fa-facebook"></i></a> 
+                </div>
+                </div>
+            </div>
+            
+            <div class="w3-sidebar w3-bar-block w3-card w3-animate-right" style="display:none;right:0;" id="rightMenu">
+                <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
+            </div>
+            
+            <div class="jinx">
+                <button class="" onclick="openLeftMenu()">&#9776;</button>
+                <div class="w3-container">
+                <h3>JINX FEED</h3>
+                <img src="/static/images/wolf1.png" alt="" id="logo1">
+                </div>
+            </div>
+                
+            <script>
+            function openLeftMenu() {
+                document.getElementById("leftMenu").style.display = "block";
+            }
+            
+            function closeLeftMenu() {
+                document.getElementById("leftMenu").style.display = "none";
+            }
+            
+            </script>
+
+
+
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+            <div class="container bootstrap snippets bootdey">
+                <div class="row">
+                    
+                    
+                   
+                    
+                    <div class="panel">
+                    <div class="panel-body">
+                        <div>
+                            <img src="" alt="">
+                        </div>
+                        <div class="fb-user-details">
+                            <h3><a href="#" class="#">{{username}}</a></h3>
+                        </div>
+                        <div>
+                            <textarea class="form-control input-lg p-text-area" rows="2" columns="6" placeholder="Whats in your mind today?"></textarea>
+                            <input type="submit" value="Submit">
+                        </div>
+                        <div class="clearfix"></div>
+                        <p class="fb-user-status">{{email}}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                        <div class="fb-status-container fb-border">
+                            <div class="fb-time-action">
+                            </div>
+                        </div>
+                    
+                    
+                        
+                    
+                            <ul class="fb-comments">
+                                <li>
+                                    <a href="#" class="cmt-thumb">
+                                        <img src="" alt="">
+                                    </a>
+                                    <div class="cmt-details">
+                                        <a href="#">Jhone due</a>
+                                        <span> is world famous professional photographer.  with forward thinking clients to create beautiful, </span>
+                                        <p>40 minutes ago - <a href="#" class="like-link">Like</a></p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="#" class="cmt-thumb">
+                                        <img src="" alt="">
+                                    </a>
+                                    <div class="cmt-details">
+                                        <a href="#">Tawseef</a>
+                                        <span> is world famous professional photographer.  with forward thinking clients to create beautiful, </span>
+                                        <p>34 minutes ago - <a href="#" class="like-link">Like</a></p>
+                                    </div>
+                                </li>
+                    
+                                <li>
+                                    <a href="#" class="cmt-thumb">
+                                        <img src="" alt="">
+                                    </a>
+                                    <div class="cmt-details">
+                                        <a href="#">Jhone due</a>
+                                        <span> is world famous professional photographer.   </span>
+                                        <p>15 minutes ago - <a href="#" class="like-link">Like</a></p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="#" class="cmt-thumb">
+                                        <img src="" alt="">
+                                    </a>
+                                    <div class="cmt-details">
+                                        <a href="#">Tawseef</a>
+                                        <span> thinking clients to create beautiful world famous professional photographer.  </span>
+                                        <p>2 minutes ago - <a href="#" class="like-link">Like</a></p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="#" class="cmt-thumb">
+                                        <img src="" alt="">
+                                    </a>
+                                    <div class="cmt-form">
+                                        <textarea class="form-control" placeholder="Write a comment..." name=""></textarea>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+            </div>
+            </div>
+        </div>
     </body>
 </html>
