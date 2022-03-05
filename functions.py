@@ -7,9 +7,11 @@ import json
 users=[]
 i=0
 
+
 class Post(NamedTuple):
     datecreated: str
     post: str
+    category: str
 
 
 class Node:
@@ -18,8 +20,14 @@ class Node:
       self.nextval = None
 
 class LinkedList:
-   def __init__(self):
+    def __init__(self):
       self.headval = None
+
+    def listprint(self):
+      printval = self.headval
+      while printval is not None:
+         print (printval.dataval)
+         printval = printval.nextval
 
 class User(NamedTuple):
     id: int
@@ -27,13 +35,15 @@ class User(NamedTuple):
     email: str
     password: str
     interests: list
-    posts: LinkedList
 
+
+postsx=LinkedList()
+post1=Post(datetime.today().strftime('%Y-%m-%d-%H:%M:%S'), "I'm just starting to use javascript, and I'm loving it.","programación")
+postsx.headval=Node(post1)
 
 def crear_usuario(username,i, email, password):
-    posts=LinkedList()
     interests=[]
-    a=User(i,username, email, password, interests, posts)
+    a=User(i,username, email, password, interests)
     i+=1
     users.append(a)
     return users, i-1
@@ -46,12 +56,11 @@ def agregar_intereses(users, i, interests):
     print(a)
     return users, i
 
-def agregar_post(users, i, post):
-    a=Post(datetime.today().strftime('%Y-%m-%d-%H:%M:%S'), post)
-    list1=users[i].posts
+def agregar_post(postsx,post, category):
+    a=Post(datetime.today().strftime('%Y-%m-%d-%H:%M:%S'), post, category)
     node=Node(a)
-    list1.headval.nextval=node
-    return users, i
+    postsx.headval.nextval = node
+    return postsx
 
 def printear_informacion(users,i):
     user=users[i]
@@ -67,8 +76,8 @@ def printear_informacion(users,i):
 
 
 # post1=Post(datetime.today().strftime('%Y-%m-%d-%H:%M:%S'), "Hola")
-# post2=Post(datetime.today().strftime('%Y-%m-%d-%H:%M:%S'), "Adios")
-# list1 = LinkedList()
+# # post2=Post(datetime.today().strftime('%Y-%m-%d-%H:%M:%S'), "Adios")
+# # list1 = LinkedList()
 # list1.headval = Node(post1)
 # e2 = Node(post2)
 # list1.headval.nextval = e2

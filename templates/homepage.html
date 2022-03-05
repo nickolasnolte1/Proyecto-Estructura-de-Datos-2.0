@@ -117,15 +117,26 @@ ul {
 .post-actions__widget {
   display: inline-block;
   width: 38%;
+  height:45px;
   text-align: right;
+  position: relative;
+  left: -85px;
 }
 .post-actions__publish {
   width: 120px;
+  position: relative;
+  left: -10px;
 
   background-color: #008391;
   color: #fff;
 
   border-radius: 1.5em;
+}
+
+.post-actions_dropdown{
+  position: relative;
+  left: 450px;
+  top:-35px;
 }
 
 .scroller::-webkit-scrollbar {
@@ -235,26 +246,31 @@ ul {
                             <div class="widget-post__header">
                               <h2 class="widget-post__title" id="post-header-title">
                                  <i class="fa fa-pencil" aria-hidden="true"></i>
-                                Write Me
+                                Create a New Post
                               </h2>
                             </div>
-                            <form id="widget-form" class="widget-post__form" name="form" aria-label="post widget">
-                              <div class="widget-post__content">
+                            <form id="widget-form" class="widget-post__form" name="form" aria-label="post widget" method="POST">
+                              <div class="widget-post__content" id="postq">
                                 <label for="post-content" class="sr-only">Share</label>
-                                <textarea name="post" id="post-content" class="widget-post__textarea scroller" placeholder="What's in your mind today?"></textarea>
+                                <textarea name="post" id="post23" class="widget-post__textarea scroller" placeholder="What's in your mind today?"></textarea>
                               </div>
                               <div class="widget-post__options is--hidden" id="stock-options">
                               </div>
                               <div class="widget-post__actions post--actions">
                                 <div class="post-actions__widget">
-                                  <button class="btn post-actions__publish">Post</button>
+                                  <button class="btn post-actions__publish" action="submit">Post</button>
+                                  <select name="categories" id="categories" class="post-actions_dropdown">
+                                    <option value="politica">Política</option>
+                                    <option value="cine">Cine</option>
+                                    <option value="deportes">Deportes</option>
+                                    <option value="musica">Música</option>
+                                    <option value="arte">Arte</option>
+                                    <option value="programacion">Programación</option>
+                                  </select>
                                 </div>
                               </div>
                             </form>
                           </div>
-                        <div class="clearfix"></div>
-                        <p class="fb-user-status">{{email}}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
                         <div class="fb-status-container fb-border">
                             <div class="fb-time-action">
                             </div>
