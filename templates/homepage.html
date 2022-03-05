@@ -164,6 +164,22 @@ ul {
 }
 
 
+/* Fake image */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+  width:300px;
+  padding: 20px;
+  color:#008391
+}
+
+
+
 /* *  Placeholder contrast * */
 ::-webkit-input-placeholder {
   color: #666;
@@ -224,114 +240,63 @@ ul {
             }
             
             </script>
-
-
-
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
             <div class="container bootstrap snippets bootdey">
-                <div class="row">
-                    
-                    
-                   
-                    
-                    <div class="panel">
-                    <div class="panel-body">
-                        <div>
-                            <img src=""  alt="">
+                <div class="row">   
+                <div class="panel">
+                <div class="panel-body">
+                    <div>
+                        <img src=""  alt="">
+                    </div>
+                    <div class="fb-user-details">
+                        <h3><a href="#" class="#">{{username}}</a></h3>
+                    </div>
+                    <div class="widget-post" aria-labelledby="post-header-title">
+                        <div class="widget-post__header">
+                          <h2 class="widget-post__title" id="post-header-title">
+                              <i class="fa fa-pencil" aria-hidden="true"></i>
+                            Create a New Post
+                          </h2>
                         </div>
-                        <div class="fb-user-details">
-                            <h3><a href="#" class="#">{{username}}</a></h3>
-                        </div>
-                        <div class="widget-post" aria-labelledby="post-header-title">
-                            <div class="widget-post__header">
-                              <h2 class="widget-post__title" id="post-header-title">
-                                 <i class="fa fa-pencil" aria-hidden="true"></i>
-                                Create a New Post
-                              </h2>
-                            </div>
-                            <form id="widget-form" class="widget-post__form" name="form" aria-label="post widget" method="POST">
-                              <div class="widget-post__content" id="postq">
-                                <label for="post-content" class="sr-only">Share</label>
-                                <textarea name="post" id="post23" class="widget-post__textarea scroller" placeholder="What's in your mind today?"></textarea>
-                              </div>
-                              <div class="widget-post__options is--hidden" id="stock-options">
-                              </div>
-                              <div class="widget-post__actions post--actions">
-                                <div class="post-actions__widget">
-                                  <button class="btn post-actions__publish" action="submit">Post</button>
-                                  <select name="categories" id="categories" class="post-actions_dropdown">
-                                    <option value="politica">Política</option>
-                                    <option value="cine">Cine</option>
-                                    <option value="deportes">Deportes</option>
-                                    <option value="musica">Música</option>
-                                    <option value="arte">Arte</option>
-                                    <option value="programacion">Programación</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </form>
+                        <form id="widget-form" class="widget-post__form" name="form" aria-label="post widget" method="POST">
+                          <div class="widget-post__content" id="postq">
+                            <label for="post-content" class="sr-only">Share</label>
+                            <input name="post23" id="post23" class="widget-post__textarea scroller" placeholder="What's in your mind today?"></input>
                           </div>
-                        <div class="fb-status-container fb-border">
-                            <div class="fb-time-action">
+                          <div class="widget-post__options is--hidden" id="stock-options">
+                          </div>
+                          <div class="widget-post__actions post--actions">
+                            <div class="post-actions__widget">
+                              <button class="btn post-actions__publish" action="submit">Post</button>
+                              <select name="categories" id="categories" class="post-actions_dropdown">
+                                <option value="politica">Política</option>
+                                <option value="cine">Cine</option>
+                                <option value="deportes">Deportes</option>
+                                <option value="musica">Música</option>
+                                <option value="arte">Arte</option>
+                                <option value="programacion">Programación</option>
+                              </select>
                             </div>
+                          </div>
+                        </form>
+                      </div>
+                    <div class="fb-status-container fb-border">
+                        <div class="fb-time-action">
                         </div>
+                    </div>
+                    {%for post, date, category in postinfo%}
+                      <div class="card">
+                        <h2>Category: {{category}}</h2>
+                        <h6>Date Posted: {{date}}</h6>
+                        <div class="fakeimg" style="height:200px;">{{post}}</div>
+                      </div>
+                      <br>
+                    {%endfor%}
                     
-                    
-                        
-                    
-                            <ul class="fb-comments">
-                                <li>
-                                    <a href="#" class="cmt-thumb">
-                                        <img src="" alt="">
-                                    </a>
-                                    <div class="cmt-details">
-                                        <a href="#">Jhone due</a>
-                                        <span> is world famous professional photographer.  with forward thinking clients to create beautiful, </span>
-                                        <p>40 minutes ago - <a href="#" class="like-link">Like</a></p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="#" class="cmt-thumb">
-                                        <img src="" alt="">
-                                    </a>
-                                    <div class="cmt-details">
-                                        <a href="#">Tawseef</a>
-                                        <span> is world famous professional photographer.  with forward thinking clients to create beautiful, </span>
-                                        <p>34 minutes ago - <a href="#" class="like-link">Like</a></p>
-                                    </div>
-                                </li>
-                    
-                                <li>
-                                    <a href="#" class="cmt-thumb">
-                                        <img src="" alt="">
-                                    </a>
-                                    <div class="cmt-details">
-                                        <a href="#">Jhone due</a>
-                                        <span> is world famous professional photographer.   </span>
-                                        <p>15 minutes ago - <a href="#" class="like-link">Like</a></p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="#" class="cmt-thumb">
-                                        <img src="" alt="">
-                                    </a>
-                                    <div class="cmt-details">
-                                        <a href="#">Tawseef</a>
-                                        <span> thinking clients to create beautiful world famous professional photographer.  </span>
-                                        <p>2 minutes ago - <a href="#" class="like-link">Like</a></p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="#" class="cmt-thumb">
-                                        <img src="" alt="">
-                                    </a>
-                                    <div class="cmt-form">
-                                        <textarea class="form-control" placeholder="Write a comment..." name=""></textarea>
-                                    </div>
-                                </li>
-                            </ul>
+                      
+
                             <div class="clearfix"></div>
-                        </div>
+                    </div>
                     </div>
                     </div>
             </div>

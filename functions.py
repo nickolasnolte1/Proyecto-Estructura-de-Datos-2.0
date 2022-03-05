@@ -38,8 +38,11 @@ class User(NamedTuple):
 
 
 postsx=LinkedList()
-post1=Post(datetime.today().strftime('%Y-%m-%d-%H:%M:%S'), "I'm just starting to use javascript, and I'm loving it.","programación")
-postsx.headval=Node(post1)
+post1=Post(datetime.today().strftime('%Y-%m-%d-%H:%M:%S'), "Bad bunny viene a Guatemala!", "musica")
+a=Node(post1)
+postsx.headval=a
+
+
 
 def crear_usuario(username,i, email, password):
     interests=[]
@@ -56,10 +59,18 @@ def agregar_intereses(users, i, interests):
     print(a)
     return users, i
 
+
+
 def agregar_post(postsx,post, category):
     a=Post(datetime.today().strftime('%Y-%m-%d-%H:%M:%S'), post, category)
     node=Node(a)
-    postsx.headval.nextval = node
+    if postsx.headval is None:
+        postsx.headval = node
+        return postsx
+    laste = postsx.headval
+    while(laste.nextval):
+        laste = laste.nextval
+    laste.nextval=node
     return postsx
 
 def printear_informacion(users,i):
@@ -70,13 +81,21 @@ def printear_informacion(users,i):
     interests=user.interests
     return username, email, password, interests
 
+def printear_posts(postsx):
+    postinfo=[]
+    printval = postsx.headval
+    while printval is not None:
+        postinfo.insert(0,[printval.dataval.post, printval.dataval.datecreated, printval.dataval.category])
+        printval = printval.nextval
+    return postinfo
 
 
 
 
 
-# post1=Post(datetime.today().strftime('%Y-%m-%d-%H:%M:%S'), "Hola")
-# # post2=Post(datetime.today().strftime('%Y-%m-%d-%H:%M:%S'), "Adios")
+
+
+
 # # list1 = LinkedList()
 # list1.headval = Node(post1)
 # e2 = Node(post2)
