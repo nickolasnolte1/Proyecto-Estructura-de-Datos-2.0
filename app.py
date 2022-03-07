@@ -32,7 +32,7 @@ def home(user_id):
     postinfo=printear_posts(postsx)
     if request.method == 'POST':
         post=request.form.get("post23")
-        category=request.form.get('categories') 
+        category=request.form.get('categories')  
         posts2=agregar_post(postsx,post, category)
         postinfo=printear_posts(posts2)
     return render_template('homepage.html', username=username, email=email, password=password, interests=interests, postinfo=postinfo)
