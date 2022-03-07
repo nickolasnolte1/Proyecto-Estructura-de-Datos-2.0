@@ -36,6 +36,8 @@
 
 ### EL programa actualmente no se encuentra enlazado con ninguna base de datos, por lo que la función de Sign In todavía no está habilitada, eso será para la siguiente entrega de proyecto.
 
+Para poder correr el programa, se debe correr el siguiente comando en la terminal: `pip3 install flask-profiler`
+
 
 
 # Diagrama de casos de uso
