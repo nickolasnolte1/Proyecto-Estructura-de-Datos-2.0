@@ -47,14 +47,14 @@ def categories(user_id):
 @flask_profiler.profile()
 def home(user_id):
     username, email, password, interests=printear_informacion(users,int(user_id))
-    postinfo=printear_posts(postsx)
     if request.method == 'POST':
         post=request.form.get("post23")
-        category=request.form.get('categories') 
+        category=request.form.get('categories')
+        print(post)
+        print(category)
         posts2=agregar_post(postsx,post, category)
-        postinfo=printear_posts(posts2)
-    return render_template('homepage.html', username=username, email=email, password=password, interests=interests, postinfo=postinfo)
-
+        print(posts2)
+    return render_template('homepage.html', username=username, email=email, password=password, interests=interests)
 
 
 if __name__ == "__main__":
