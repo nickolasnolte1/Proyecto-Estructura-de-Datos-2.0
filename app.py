@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, url_for, redirect
 from flask.wrappers import Request
-from functions import crear_usuario, printear_posts, users, agregar_intereses, i, printear_informacion, postsx, agregar_post
+from functions import crear_usuario, users, agregar_intereses, i, printear_informacion, postsx, agregar_post
+import cProfile
 
 app = Flask(__name__)
 
@@ -29,13 +30,14 @@ def categories(user_id):
 @app.route('/homepage/<user_id>', methods = ["GET", "POST"])
 def home(user_id):
     username, email, password, interests=printear_informacion(users,int(user_id))
-    postinfo=printear_posts(postsx)
     if request.method == 'POST':
         post=request.form.get("post23")
-        category=request.form.get('categories')  
+        category=request.form.get('categories') 
+        print(post)
+        print(category)
         posts2=agregar_post(postsx,post, category)
-        postinfo=printear_posts(posts2)
-    return render_template('homepage.html', username=username, email=email, password=password, interests=interests, postinfo=postinfo)
+        print(posts2)
+    return render_template('homepage.html', username=username, email=email, password=password, interests=interests)
 
 
 if __name__ == "__main__":
