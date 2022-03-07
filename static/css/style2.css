@@ -302,13 +302,6 @@ h1 {text-align: center;}
     text-align: center;
   }
 
-  .option{
-    font-weight: bold !important;
-    color: #fff !important;
-    background: #bc0000 !important;
-    text-transform: uppercase;
-  }
-
   .postbox{
     background-color: white;
     border: 1px outset #2C3333;
