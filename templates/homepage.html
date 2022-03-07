@@ -211,7 +211,12 @@ ul {
                 <div>
                 <p class="info"><b>Username: {{username}}</p></b>
                 <p class="info"><b>Email: {{email}}</p></b>
-                <p class="info"><b>Intereses: {{interests}}</p></b>
+                <p class="info"><b>Intereses:</p></b>
+                <ul>
+                {% for interes in interests %}
+                <li class="info" style="margin: right 20px;"><b>{{interes}}</p></li>
+                {% endfor %}
+                </ul>
                 <div style="margin: 24px 0;">
                     <a class="aditional" style="margin-left: 19px;" href="#"><i class="fa fa-dribbble"></i></a> 
                     <a class="aditional" style="margin-left: 19px;" href="#"><i class="fa fa-twitter"></i></a>  
