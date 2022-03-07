@@ -14,7 +14,11 @@ app.config['flask_profiler'] = {
         "enabled" : True,
         "username" : "admin",
         "password" : "admin"
-    }
+    },
+    "ignore": [
+	    "^/static/.*"
+	]
+
 }
 
 flask_profiler.init_app(app)
