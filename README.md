@@ -54,7 +54,7 @@ A continuación se adjunta una imagen del profiling.
 
 # Unit Testing
 
-Se realizaron 6 unit tests para probar las diferentes funciones. 
+Se realizaron 6 unit tests para comprobar el correcto funcionamiento de las diferentes funciones utilizadas en el programa.
 Estos tests se pueden encontrar en la carpeta llamada "testing.py"
 
 # Documento de Product Spec. 
