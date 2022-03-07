@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, flash
 from flask.wrappers import Request
 from functions import crear_usuario, printear_posts, users, agregar_intereses, i, printear_informacion, postsx, agregar_post, check
 import flask_profiler
@@ -27,6 +27,8 @@ app.config['flask_profiler'] = {
 	]
 
 }
+app.secret_key = 'super secret key'
+app.config['SESSION_TYPE'] = 'filesystem'
 
 flask_profiler.init_app(app)
 
@@ -50,6 +52,10 @@ def signup():
             if password==confirm:
                 a, user_id=crear_usuario(username,i, email, password)
                 return redirect(url_for('categories', user_id=user_id))
+            else:
+                flash("Passwords don't match", "warning")
+        else:
+            flash("Invalid email address", "warning")
     return render_template('signup.html')
 
 @app.route('/categories/<user_id>', methods = ["GET", "POST"])

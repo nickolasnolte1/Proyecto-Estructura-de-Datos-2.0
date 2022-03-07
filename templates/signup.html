@@ -10,6 +10,11 @@
 
 		<!-- STYLE CSS -->
 		<link rel="stylesheet" href="/static/css/style.css">
+		<script>
+			function redirecttosignup() {
+			  window.location.href="http://localhost:8000";  
+			}
+		  </script>
 	</head>
 
 	<body>
@@ -40,7 +45,19 @@
 					<button type="submit">
 						<span>Register</span>
 					</button>
+					{% with errors = get_flashed_messages(category_filter=["warning"]) %}
+						{% if errors %}
+							{%- for message in errors %}
+								<div class="alert alert-warning alert-dismissible fade show" role="alert">
+									<span class="invalid">{{ message }}</span>
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+							{% endfor -%}
+						{% endif %}
+					{% endwith %}
 				</form>
+				
 			</div>
 
 		</div>
