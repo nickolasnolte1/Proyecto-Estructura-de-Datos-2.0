@@ -32,9 +32,9 @@ class Testprueba(unittest.TestCase):
         email="estebansamayoa@ufm.edu"
         password="1234"
         users,i =functions.crear_usuario(username, id, email, password)
-        self.assertEqual(username, users[i].username)
-        self.assertEqual(email, users[i].email)
-        self.assertEqual(password, users[i].password)
+        self.assertEqual(username, users[1].username)
+        self.assertEqual(email, users[1].email)
+        self.assertEqual(password, users[1].password)
 
 
     def test_intereses(self):
