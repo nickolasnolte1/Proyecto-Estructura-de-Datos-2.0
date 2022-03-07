@@ -1,6 +1,6 @@
   .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
+    width: 1200px;
     margin: auto;
     text-align: center;
     font-family: arial;
@@ -111,6 +111,7 @@ max-height:280px;
     text-rendering: optimizelegibility;
     text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
     font-size: 25px;
+    font-family: "Muli-Regular";
 }
 
 .fb-user-thumb {
@@ -291,6 +292,17 @@ h1 {text-align: center;}
     margin-bottom: 33px; }
 
 
+  .info{
+    font-family: "Muli-Regular";
+    font-size: 14px;
+    margin: 0;
+    background-color: #395B64;
+    color: white;
+    border: 1px outset #2C3333;
+    text-align: center;
+  }
+
+
 
     
 
@@ -309,7 +321,7 @@ h1 {text-align: center;}
       }
       body {
         padding: 0 1em;
-        font-family: sans-serif;
+        font-family: "Muli-Regular";
       }
       
       
