@@ -2,7 +2,9 @@ from flask import Flask, render_template, request, url_for, redirect
 from flask.wrappers import Request
 from functions import crear_usuario, printear_posts, users, agregar_intereses, i, printear_informacion, postsx, agregar_post
 
+
 app = Flask(__name__)
+
 
 @app.route('/' , methods = ["GET", "POST"])
 def signup():
@@ -32,11 +34,14 @@ def home(user_id):
     postinfo=printear_posts(postsx)
     if request.method == 'POST':
         post=request.form.get("post23")
-        category=request.form.get('categories')  
+        category=request.form.get('categories') 
         posts2=agregar_post(postsx,post, category)
         postinfo=printear_posts(posts2)
     return render_template('homepage.html', username=username, email=email, password=password, interests=interests, postinfo=postinfo)
 
 
+
 if __name__ == "__main__":
+    from werkzeug.middleware.profiler import ProfilerMiddleware
+    app.wsgi_app = ProfilerMiddleware(app.wsgi_app)
     app.run(host="localhost", port = 8000, debug=True)
