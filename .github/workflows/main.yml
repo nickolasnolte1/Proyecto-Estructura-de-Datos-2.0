@@ -20,6 +20,18 @@ jobs:
         with:
           python-version: "3.6"
 
+      - name: Get pip cache dir
+        id: pip-cache
+        run: |
+          echo "::set-output name=dir::$(pip cache dir)"
+      - name: Cache pip
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.pip-cache.outputs.dir }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       # Install dependencies
       - name: Install dependencies
         run: |
@@ -27,6 +39,7 @@ jobs:
           pip install flask
           pip install psycopg2
           pip install flask_profiler
+          pip install -r requirements.txt
 
           
       # Run our unit tests
