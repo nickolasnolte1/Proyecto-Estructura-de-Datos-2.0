@@ -25,7 +25,7 @@
 
 
 *   Elegir los temas que más le interesan a la persona. Puede elegir entre:
-    * Política
+    * Política 
     * Cine
     * Deportes
     * Música
