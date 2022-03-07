@@ -1,6 +1,6 @@
   .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    width: 1200px;
+    width: 1000px;
     margin: auto;
     text-align: center;
     font-family: arial;
@@ -301,6 +301,19 @@ h1 {text-align: center;}
     border: 1px outset #2C3333;
     text-align: center;
   }
+
+  .option{
+    font-weight: bold !important;
+    color: #fff !important;
+    background: #bc0000 !important;
+    text-transform: uppercase;
+  }
+
+  .postbox{
+    background-color: white;
+    border: 1px outset #2C3333;
+  }
+
 
 
 
