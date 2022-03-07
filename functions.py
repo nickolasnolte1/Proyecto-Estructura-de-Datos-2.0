@@ -50,7 +50,7 @@ def crear_usuario(username,i, email, password):
     a=User(i,username, email, password, interests)
     i+=1
     users.append(a)
-    return users, i-1 
+    return users, i 
 
 def agregar_intereses(users, i, interests):
     a=users[i]
