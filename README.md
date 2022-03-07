@@ -44,6 +44,7 @@
 # Profiling 
 
 Se utilizó "Flask Profiler" como herramienta para hacer el profiling del programa. 
+
 A continuación se adjunta una imagen del profiling.
 
 <img width="966" alt="image" src="https://user-images.githubusercontent.com/61555652/156972756-ba80b2b5-9229-43bc-a925-4ad1e48eacea.png">
