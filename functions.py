@@ -42,7 +42,8 @@ post1=Post(datetime.today().strftime('%Y-%m-%d-%H:%M:%S'), "Bad bunny viene a Gu
 a=Node(post1)
 postsx.headval=a
 
-
+b=User(0, "esteban", "estebansamayoa@ufm.edu","12345", ["politica", "programacion"])
+users.append(b)
 
 def crear_usuario(username,i, email, password):
     interests=[]

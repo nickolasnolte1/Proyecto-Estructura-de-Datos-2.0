@@ -1,12 +1,26 @@
 from flask import Flask, render_template, request, url_for, redirect
 from flask.wrappers import Request
 from functions import crear_usuario, printear_posts, users, agregar_intereses, i, printear_informacion, postsx, agregar_post
-
+import flask_profiler
 
 app = Flask(__name__)
+app.config['DEBUG'] = True
+app.config['flask_profiler'] = {
+    "enabled" : app.config['DEBUG'],
+    "storage" : {
+        "engine" : "sqlite"
+    },
+    "basicAuth" : {
+        "enabled" : True,
+        "username" : "admin",
+        "password" : "admin"
+    }
+}
 
+flask_profiler.init_app(app)
 
 @app.route('/' , methods = ["GET", "POST"])
+@flask_profiler.profile()
 def signup():
     username = request.args.get("username")
     email = request.args.get("email")
@@ -19,6 +33,7 @@ def signup():
     return render_template('signup.html')
 
 @app.route('/categories/<user_id>', methods = ["GET", "POST"])
+@flask_profiler.profile()
 def categories(user_id):
     if request.method == 'POST':
         interests=request.form.getlist('check')
@@ -29,6 +44,7 @@ def categories(user_id):
 
 
 @app.route('/homepage/<user_id>', methods = ["GET", "POST"])
+@flask_profiler.profile()
 def home(user_id):
     username, email, password, interests=printear_informacion(users,int(user_id))
     postinfo=printear_posts(postsx)
@@ -42,6 +58,4 @@ def home(user_id):
 
 
 if __name__ == "__main__":
-    from werkzeug.middleware.profiler import ProfilerMiddleware
-    app.wsgi_app = ProfilerMiddleware(app.wsgi_app)
     app.run(host="localhost", port = 8000, debug=True)
