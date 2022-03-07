@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, url_for, redirect
 from flask.wrappers import Request
 from functions import crear_usuario, users, agregar_intereses, i, printear_informacion, postsx, agregar_post
-import cProfile
 
 app = Flask(__name__)
 
