@@ -293,10 +293,9 @@ h1 {text-align: center;}
 
 
   .info{
-    font-family: "Muli-Regular";
-    font-size: 14px;
+    font-size: 12px;
     margin: 0;
-    background-color: #F5F2E7;
+    background-color: white;
     color: black;
     border: 1px outset #2C3333;
     text-align: center;
