@@ -1,7 +1,14 @@
 from flask import Flask, render_template, request, url_for, redirect
 from flask.wrappers import Request
-from functions import crear_usuario, printear_posts, users, agregar_intereses, i, printear_informacion, postsx, agregar_post
+from functions import crear_usuario, printear_posts, users, agregar_intereses, i, printear_informacion, postsx, agregar_post, check
 import flask_profiler
+import re
+
+
+regex = r'\b[A-Za-z0-9._%+-.]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+
+
+
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -19,6 +26,14 @@ app.config['flask_profiler'] = {
 
 flask_profiler.init_app(app)
 
+def check(email):
+
+	if(re.fullmatch(regex, email)):
+		return "Valid Email"
+
+	else:
+		return "Invalid Email"
+
 @app.route('/' , methods = ["GET", "POST"])
 @flask_profiler.profile()
 def signup():
@@ -27,9 +42,10 @@ def signup():
     password = request.args.get("password")
     confirm=request.args.get("confirm")
     if (username):
-        if password==confirm:
-            a, user_id=crear_usuario(username,i, email, password)
-            return redirect(url_for('categories', user_id=user_id))
+        if check(email)=="Valid Email":
+            if password==confirm:
+                a, user_id=crear_usuario(username,i, email, password)
+                return redirect(url_for('categories', user_id=user_id))
     return render_template('signup.html')
 
 @app.route('/categories/<user_id>', methods = ["GET", "POST"])

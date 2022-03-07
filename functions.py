@@ -1,6 +1,8 @@
 from typing import NamedTuple
 from datetime import datetime
 import json
+import re
+
 
 
 
@@ -89,6 +91,16 @@ def printear_posts(postsx):
         postinfo.insert(0,[printval.dataval.post, printval.dataval.datecreated, printval.dataval.category])
         printval = printval.nextval
     return postinfo
+
+#Email validator
+regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+
+def check(email):
+    if(re.fullmatch(regex, email)):
+        print("")
+ 
+    else:
+        print("Invalid Email")
 
 
 
