@@ -296,8 +296,8 @@ h1 {text-align: center;}
     font-family: "Muli-Regular";
     font-size: 14px;
     margin: 0;
-    background-color: #395B64;
-    color: white;
+    background-color: #F5F2E7;
+    color: black;
     border: 1px outset #2C3333;
     text-align: center;
   }
@@ -307,6 +307,10 @@ h1 {text-align: center;}
     border: 1px outset #2C3333;
   }
 
+  .aditional{
+    text-align: center;
+    color: white;
+  }
 
 
 
