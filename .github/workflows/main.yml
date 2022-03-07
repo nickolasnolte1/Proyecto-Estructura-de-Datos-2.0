@@ -100,4 +100,4 @@ jobs:
         - name: Create test environment
           run: |
             (eb use test-environment3 && eb status test-environment3 && eb deploy) 
-            || eb create test-environment3
+               eb create test-environment3
