@@ -1,1 +1,2 @@
 Flask
+Django==1.8.4
