@@ -26,7 +26,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install flask
           pip install psycopg2
-          pip install unittest
+
           
       # Run our unit tests
       - name: Run unit tests
