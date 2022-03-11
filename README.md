@@ -2,7 +2,7 @@
 <img width="435" alt="image" src="https://user-images.githubusercontent.com/61555652/156282205-f4f177da-ecc2-4387-97a9-9c743c38f15a.png">
 
 
-## Proyecto de Estructuras de Datos creado en Python y HTML
+## Proyecto de Estructuras de Datos creado en Python y HTML/CSS
 **Creado por:**
 - Esteban Samayoa
 - Nickolas Nolte
