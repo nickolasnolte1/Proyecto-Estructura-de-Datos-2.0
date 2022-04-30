@@ -1,21 +1,139 @@
 <!DOCTYPE html>  
- <html lang="en">  
-  <head>  
-   <meta charset="UTF-8" />  
-   <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
-   <title></title>  
+<html lang="en">  
+ <head>  
+  <meta charset="UTF-8" />  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+  <title>Document</title>  
+  <link rel="stylesheet" href="style.css" />  
+  <link  
+   rel="stylesheet"  
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"  
+   integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="  
+   crossorigin="anonymous"  
+   referrerpolicy="no-referrer"  
+  />  
 
   </head> 
   
   
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');  
+    *{  
+      margin: 0;  
+      padding: 0;  
+      box-sizing: border-box;  
+      font-family: 'Poppins', sans-serif;  
+    }  
+    .campana{  
+      height: 100vh;  
+      display: flex;  
+      justify-content: center;  
+      align-items: center;  
+      margin-top: -600px;
+
+    }  
+    .container{  
+      display: flex;  
+      justify-content: center;  
+      align-items: center;  
+      position: relative;  
+    }  
+    .btn{  
+      position: relative;  
+      width: 25px;  
+      height: 25px;  
+      cursor: pointer;  
+      appearance: none;  
+      -webkit-appearance: none;  
+      cursor: pointer;  
+      transform: translateY(-150px);  
+    }  
+    
+    .btn::before{  
+      content: '\f0f3';  
+      position: absolute;  
+      top: 50%;  
+      left: 50%;  
+      font-family: 'Font Awesome 5 Free';  
+      font-weight: 700;  
+      font-size: 1.6em;  
+      transform: translate(-50%, -50%);  
+    }  
+    
+    .btn:checked ~ .box{  
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);  
+    }  
+
+    /* box */  
+    .box{  
+      width: 350px;  
+      margin-top: 2em;  
+      position: absolute;  
+      overflow: hidden;  
+      border: 1px solid rgba(0, 0, 0, 0.137);  
+      transition: all .4s;  
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);  
+    }  
+    .header{  
+      width: 100%;  
+      display: flex;  
+      justify-content: space-between;  
+      padding: 0.6em 1em;  
+      border-bottom: 1px solid rgba(0, 0, 0, 0.082);  
+    }  
+     
+
+    .notification{  
+      width: 350px;  
+      padding: 0.6em 1em;  
+      display: flex;  
+      align-items: center;  
+    }  
+
+    .notification .text p{  
+      font-size: 0.8em;  
+    }  
+  
+    .notification .text .time{  
+      font-size: 0.7em;  
+      color: rgba(0, 0, 0, 0.61);  
+    }  
   </style>
 
 
 
   <body>
- 
+      <div class="campana"></div>  
+   <div class="container">  
+    <input type="checkbox" name="" class="btn" />  
+    <div class="box">  
+     <div class="header">  
+      <p>Notifications</p>  
+      <a href="#">See all</a>  
+     </div>  
+     <div class="content">  
+      <div class="notification">  
+       <div class="text">  
+        <p><span class="name">Harry Potter</span> left a comment.</p>  
+        <p class="time">1 hour ago</p>  
+       </div>  
+      </div>  
+      <div class="notification">  
+       <div class="text">  
+        <p><span class="name">Ronald Weasley</span> liked your post.</p>  
+        <p class="time">1 hour ago</p>  
+       </div>  
+      </div>  
+      <div class="notification">    
+       <div class="text">  
+        <p><span class="name">Hermione Granger</span> reacted to your post.</p>  
+        <p class="time">1 hour ago</p>  
+       </div>  
+      </div>  
+     </div>  
+    </div>  
+   </div>  
   </body>  
  </html>  
