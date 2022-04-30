@@ -38,6 +38,11 @@ def check(email):
 	else:
 		return "Invalid Email"
 
+
+@app.route('/notifications')
+def noti():
+    return render_template('notifications.html')
+
 @app.route('/' , methods = ["GET", "POST"])
 @flask_profiler.profile()
 def signup():
