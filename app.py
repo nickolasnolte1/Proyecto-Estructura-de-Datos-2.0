@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, url_for, redirect, flash
 from flask.wrappers import Request
-from functions import crear_usuario, printear_posts, users, agregar_intereses, i, printear_informacion, postsx, agregar_post, check
+from functions import crear_usuario, printear_posts, users, agregar_intereses, i, printear_informacion, postsx, check
 import flask_profiler
 import re
 
@@ -80,11 +80,11 @@ def home(user_id):
     if request.method == 'POST':
         post=request.form.get("post23")
         category=request.form.get('categories')
+        minutes=request.form.get('datetopost')
         print(post)
         print(category)
-        posts2=agregar_post(postsx,post, category)
-        print(posts2)
-        postinfo=printear_posts(posts2)
+        postsx.enqueue(post, minutes, category)
+        postinfo=printear_posts(postsx)
     return render_template('homepage.html', username=username, email=email, password=password, interests=interests, postinfo=postinfo)
 
 

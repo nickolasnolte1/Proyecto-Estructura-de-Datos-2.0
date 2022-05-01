@@ -1,5 +1,5 @@
 from typing import NamedTuple
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 import re
 
@@ -11,7 +11,7 @@ i=0
 
 
 class Post(NamedTuple):
-    datecreated: str
+    dateposted: str
     post: str
     category: str
 
@@ -31,6 +31,7 @@ class LinkedList:
          print (printval.dataval)
          printval = printval.nextval
 
+
 class User(NamedTuple):
     id: int
     username: str
@@ -38,11 +39,45 @@ class User(NamedTuple):
     password: str
     interests: list
 
+# Queue implementation in Python
 
-postsx=LinkedList()
-post1=Post(datetime.today().strftime('%Y-%m-%d-%H:%M:%S'), "Bad bunny viene a Guatemala!", "musica")
-a=Node(post1)
-postsx.headval=a
+class Queue:
+    def __init__(self):
+        self.queue = []
+    # Add an element
+    def enqueue(self,dpostinfo, n, dcategory):
+        current_time = datetime.now()
+        future_time = current_time + timedelta(minutes=int(n))
+        future_time_str = future_time.strftime('%m-%d-%Y %H:%M:%S.%f')
+        dpostx=Post(future_time_str, dpostinfo, dcategory)
+        self.queue.append(dpostx)
+
+    # Remove an element
+    def dequeue(self):
+        if len(self.queue) < 1:
+            return None
+        return self.queue.pop(0)
+
+
+    # Display  the queue
+    def display(self):
+        prueba=self.queue
+        prueba.sort(key=lambda x: x.dateposted)
+        for i in prueba:
+            print(f"Date posted:{i.dateposted}")
+            print(f"Date posted:{i.post}")
+            print(f"Date posted:{i.category}")
+
+    def size(self):
+        return len(self.queue)
+
+
+
+
+
+
+postsx=Queue()
+postsx.enqueue("Bad Bunny Viene a Guatemala!", 0, "Politica")
 
 b=User(0, "esteban", "estebansamayoa@ufm.edu","12345", ["politica", "programacion"])
 users.append(b)
@@ -64,17 +99,18 @@ def agregar_intereses(users, i, interests):
 
 
 
-def agregar_post(postsx,post, category):
-    a=Post(datetime.today().strftime('%Y-%m-%d-%H:%M:%S'), post, category)
-    node=Node(a)
-    if postsx.headval is None:
-        postsx.headval = node
-        return postsx
-    laste = postsx.headval
-    while(laste.nextval):
-        laste = laste.nextval
-    laste.nextval=node
-    return postsx
+# def agregar_post(postsx,post, category, n):
+#     todaydate=datetime.today()
+#     a=Post(datetime.today().strftime('%Y-%m-%d-%H:%M:%S'), post, category)
+#     node=Node(a)
+#     if postsx.headval is None:
+#         postsx.headval = node
+#         return postsx
+#     laste = postsx.headval
+#     while(laste.nextval):
+#         laste = laste.nextval
+#     laste.nextval=node
+#     return postsx
 
 def printear_informacion(users,i):
     user=users[i]
@@ -86,10 +122,12 @@ def printear_informacion(users,i):
 
 def printear_posts(postsx):
     postinfo=[]
-    printval = postsx.headval
-    while printval is not None:
-        postinfo.insert(0,[printval.dataval.post, printval.dataval.datecreated, printval.dataval.category])
-        printval = printval.nextval
+    current_time = datetime.now()
+    current_time = current_time.strftime('%m-%d-%Y %H:%M:%S.%f')
+    for i in postsx.queue:
+        if i.dateposted<=current_time:
+            postinfo.append(i)
+    print(postinfo)
     return postinfo
 
 #Email validator
@@ -101,3 +139,11 @@ def check(email):
  
     else:
         print("Invalid Email")
+
+
+queue1=Queue()
+
+queue1.enqueue("Prueba 1", 0,"politica")
+queue1.enqueue("Prueba 2", 5,"musica")
+queue1.enqueue("Prueba 3", 1,"arte")
+queue1.enqueue("Prueba 4", -10,"filosofía")

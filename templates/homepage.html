@@ -217,20 +217,23 @@ ul {
   font-family: 'Poppins', sans-serif;  
 }  
 .campana{  
-  height: 100vh;  
+  height: 10px;
   display: flex;  
+  width: 50px;
   justify-content: center;  
   align-items: center;  
-  margin-top: -600px;
+  position: relative;
+  top: 75px;
+  right: -1200px;
 
 }  
-.container{  
+.container2{  
   display: flex;  
   justify-content: center;  
   align-items: center;  
   position: relative;  
 }  
-.btn{  
+.btn2{  
   position: relative;  
   width: 25px;  
   height: 25px;  
@@ -241,7 +244,7 @@ ul {
   transform: translateY(-150px);  
 }  
 
-.btn::before{  
+.btn2::before{  
   content: '\f0f3';  
   position: absolute;  
   top: 50%;  
@@ -252,12 +255,12 @@ ul {
   transform: translate(-50%, -50%);  
 }  
 
-.btn:checked ~ .box{  
+.btn2:checked ~ .box2{  
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);  
 }  
 
 /* box */  
-.box{  
+.box2{  
   width: 350px;  
   margin-top: 2em;  
   position: absolute;  
@@ -266,7 +269,7 @@ ul {
   transition: all .4s;  
   clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);  
 }  
-.header{  
+.header2{  
   width: 100%;  
   display: flex;  
   justify-content: space-between;  
@@ -341,17 +344,12 @@ ul {
                 </div>
             </div>
 
-
-
-
-
-            <div class="campana"></div>  
-            <div class="container">  
-             <input type="checkbox" name="" class="btn" />  
-             <div class="box">  
-              <div class="header">  
-               <p>Notifications</p>  
-               <a href="#">See all</a>  
+            <div class="campana"> 
+            <div class="container2">  
+             <input type="checkbox" name="" class="btn2" />  
+             <div class="box2">  
+              <div class="header2">  
+               <p>Notifications</p>   
               </div>  
               <div class="content">  
                <div class="notification">  
@@ -372,6 +370,7 @@ ul {
                  <p class="time">1 hour ago</p>  
                 </div>  
                </div>  
+              </div> 
               </div>  
              </div>  
             </div> 
@@ -419,6 +418,14 @@ ul {
                           <div class="widget-post__actions post--actions">
                             <div class="post-actions__widget">
                               <button class="btn post-actions__publish" action="submit">Post</button>
+                              <select name="datetopost" id="datetopost" class="post-actions_dropdown">
+                                <option value=0>Publicar ahora</option>
+                                <option value=5>Publicar en 5 minutos</option>
+                                <option value=10>Publicar en 10 minutos</option>
+                                <option value=30>Publicar en 30 minutos</option>
+                                <option value=60>Publicar en 1 hora</option>
+                                <option value=1440>Publicar en 24 horas</option>
+                              </select>
                               <select name="categories" id="categories" class="post-actions_dropdown">
                                 <option value="politica">Política</option>
                                 <option value="cine">Cine</option>
@@ -435,7 +442,7 @@ ul {
                         <div class="fb-time-action">
                         </div>
                     </div>
-                    {%for post, date, category in postinfo%}
+                    {%for date, post, category in postinfo%}
                       <div class="card">
                         <h2>Category: {{category}}</h2>
                         <h6>Date Posted: {{date}}</h6>
