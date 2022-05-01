@@ -22,6 +22,8 @@
     * Correo
     * Contraseña
     * Confirmar la contraseña
+    * Programar tiempos para realizar un post
+    * Ver notificaciones de la página
 
 
 *   Elegir los temas que más le interesan a la persona. Puede elegir entre:
