@@ -351,25 +351,15 @@ ul {
               <div class="header2">  
                <p>Notifications</p>   
               </div>  
-              <div class="content">  
-               <div class="notification">  
+              <div class="content">
+              {%for notification, date in notifs%}
+              <div class="notification">  
                 <div class="text">  
-                 <p><span class="name">Harry Potter</span> left a comment.</p>  
-                 <p class="time">1 hour ago</p>  
+                 <p><span class="name">{{notification}}</p>  
+                 <p class="time">{{date}}</p> 
                 </div>  
-               </div>  
-               <div class="notification">  
-                <div class="text">  
-                 <p><span class="name">Ronald Weasley</span> liked your post.</p>  
-                 <p class="time">1 hour ago</p>  
-                </div>  
-               </div>  
-               <div class="notification">    
-                <div class="text">  
-                 <p><span class="name">Hermione Granger</span> reacted to your post.</p>  
-                 <p class="time">1 hour ago</p>  
-                </div>  
-               </div>  
+               </div> 
+              {%endfor%} 
               </div> 
               </div>  
              </div>  
@@ -388,6 +378,7 @@ ul {
             function closeLeftMenu() {
                 document.getElementById("leftMenu").style.display = "none";
             }
+
             
             </script>
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">

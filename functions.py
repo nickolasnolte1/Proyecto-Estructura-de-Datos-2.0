@@ -3,11 +3,17 @@ from datetime import datetime, timedelta
 import json
 import re
 
+from numpy import sort
+
 
 
 
 users=[]
 i=0
+
+class Notification(NamedTuple):
+    notification: str
+    dateadded: str 
 
 
 class Post(NamedTuple):
@@ -51,6 +57,9 @@ class Queue:
         future_time_str = future_time.strftime('%m-%d-%Y %H:%M:%S.%f')
         dpostx=Post(future_time_str, dpostinfo, dcategory)
         self.queue.append(dpostx)
+        ordenar=self.queue
+        ordenar.sort(key=lambda x: x.dateposted)
+        self.queue=ordenar
 
     # Remove an element
     def dequeue(self):
@@ -72,12 +81,40 @@ class Queue:
         return len(self.queue)
 
 
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def isEmpty(self) -> bool:
+        return True if len(self.stack) == 0 else False
+
+    def length(self) -> int:
+        return len(self.stack)
+
+    def top(self, noti):
+        return self.stack[-1]  
+
+    def push(self, noti) -> None:
+        time=datetime.now().strftime('%m-%d-%Y %H:%M:%S.%f')
+        x=Notification(noti, time)
+        self.x = x
+        self.stack.append(x)       
+
+    def pop(self) -> None:
+        self.stack.pop()
+
+
 
 
 
 
 postsx=Queue()
-postsx.enqueue("Bad Bunny Viene a Guatemala!", 0, "Politica")
+postsx.enqueue("Bad Bunny Viene a Guatemala!", 0, "Música")
+postsx.enqueue("Guerra de Rusia contra Ucrania!", 0, "Politica")
+
+notifications=Stack()
+
+notifications.push("Sign Up Successful!")
 
 b=User(0, "esteban", "estebansamayoa@ufm.edu","12345", ["politica", "programacion"])
 users.append(b)
@@ -127,8 +164,21 @@ def printear_posts(postsx):
     for i in postsx.queue:
         if i.dateposted<=current_time:
             postinfo.append(i)
+    postinfo.sort(key=lambda x: x.dateposted)
+    postinfo.reverse()
     print(postinfo)
     return postinfo
+
+
+def printear_notifications(notifications):
+    notifs=[]
+    for i in notifications.stack:
+        name=i.notification
+        date=i.dateadded
+        notifs.append([name, date])
+    notifs.reverse()
+    return notifs
+
 
 #Email validator
 regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
@@ -141,9 +191,3 @@ def check(email):
         print("Invalid Email")
 
 
-queue1=Queue()
-
-queue1.enqueue("Prueba 1", 0,"politica")
-queue1.enqueue("Prueba 2", 5,"musica")
-queue1.enqueue("Prueba 3", 1,"arte")
-queue1.enqueue("Prueba 4", -10,"filosofía")

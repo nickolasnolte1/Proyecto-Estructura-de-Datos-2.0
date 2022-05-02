@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, url_for, redirect, flash
 from flask.wrappers import Request
-from functions import crear_usuario, printear_posts, users, agregar_intereses, i, printear_informacion, postsx, check
+from functions import crear_usuario, printear_notifications, printear_posts, users, agregar_intereses, i, printear_informacion, postsx, check, notifications
 import flask_profiler
 import re
 
@@ -77,6 +77,7 @@ def categories(user_id):
 def home(user_id):
     username, email, password, interests=printear_informacion(users,int(user_id))
     postinfo=printear_posts(postsx)
+    notifs=printear_notifications(notifications)
     if request.method == 'POST':
         post=request.form.get("post23")
         category=request.form.get('categories')
@@ -84,8 +85,13 @@ def home(user_id):
         print(post)
         print(category)
         postsx.enqueue(post, minutes, category)
+        if int(minutes)>0:
+            notifications.push(f"Post will be published in {minutes} minutes.")
+        else:
+            notifications.push("Post was published Successfully!")
         postinfo=printear_posts(postsx)
-    return render_template('homepage.html', username=username, email=email, password=password, interests=interests, postinfo=postinfo)
+        notifs=printear_notifications(notifications)
+    return render_template('homepage.html', username=username, email=email, password=password, interests=interests, postinfo=postinfo, notifs=notifs)
 
 
 if __name__ == "__main__":
