@@ -112,7 +112,7 @@ postsx.enqueue("Guerra de Rusia contra Ucrania!", 0, "Politica")
 
 notifications=Stack()
 
-notifications.push("Sign Up Successful!")
+notifications.push("Welcome to JINX! Sign Up Successful")
 
 b=User(0, "esteban", "estebansamayoa@ufm.edu","12345", ["politica", "programacion"])
 users.append(b)
