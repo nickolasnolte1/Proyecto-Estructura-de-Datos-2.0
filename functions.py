@@ -6,8 +6,6 @@ import re
 from numpy import sort
 
 
-
-
 users=[]
 i=0
 
