@@ -24,7 +24,7 @@
     * Confirmar la contraseña
 
 
-*   Elegir los temas que más le interesan a la persona. Puede elegir entre:
+*   Elegir los temas que más le interesan al usuario. Puede elegir entre:
     * Política 
     * Cine 
     * Deportes
