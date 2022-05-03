@@ -299,6 +299,7 @@ h1 {text-align: center;}
     color: black;
     border: 1px outset #2C3333;
     text-align: center;
+    font-family: "Muli-SemiBold";
   }
 
   .postbox{
@@ -309,8 +310,11 @@ h1 {text-align: center;}
   .aditional{
     text-align: center;
     color: white;
+    font-family: "Muli-SemiBold";
   }
+ 
 
+  
 
 
     

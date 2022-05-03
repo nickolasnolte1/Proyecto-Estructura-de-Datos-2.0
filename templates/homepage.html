@@ -225,8 +225,18 @@ ul {
   position: relative;
   top: 75px;
   right: -1200px;
-
 }  
+
+
+.notification .badge {
+  position: relative;
+  height: 11px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+}
+
 .container2{  
   display: flex;  
   justify-content: center;  
@@ -268,6 +278,7 @@ ul {
   border: 1px solid rgba(0, 0, 0, 0.137);  
   transition: all .4s;  
   clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);  
+  background-color: #2c4952;
 }  
 .header2{  
   width: 100%;  
@@ -301,9 +312,14 @@ ul {
 
 
 
+
+
     </style>
 
     <link rel="stylesheet" href="/static/css/style2.css">
+
+
+    <!--SIDEBAR-->
 
     <body onload="closeLeftMenu()">
         <div class="wrapper">
@@ -312,15 +328,16 @@ ul {
             <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="background-color: #284147;" id="leftMenu">
                 <button style="color: white;" onclick="closeLeftMenu()" class="w3-bar-item w3-button w3-large">Close Menu &times;</button>
                 
-                <h3 style="text-align:center">Account information</h3>
+                <h3 style="text-align:center">ACCOUNT INFORMATION</h3>
 
                 <div>
                 <p class="info" style="margin-top: 15px;"><b>Username: {{username}}</p></b>
                 <p class="info"><b>Email: {{email}}</p></b>
                 <p class="info" style="margin-top: 20px;" ><b>Intereses:</p></b>
+                <!-- Lista de intereses -->
                 <ul>
                 {% for interes in interests %}
-                <li class="info" style="position:relative; margin-top:-15px; right: 55px; width: 215px;"><b>{{interes}}</p></li>
+                <li class="info" ><b>{{interes}}</p></li>
                 {% endfor %}
                 </ul>
                 <div style="margin: 24px 0;">
@@ -330,6 +347,13 @@ ul {
                     <a class="aditional" style="margin-left: 19px;" href="#"><i class="fa fa-facebook"></i></a> 
                     <p class="aditional">support@jinx.com</p>
                 </div>
+
+                <!-- contador de posts -->
+
+                <div>
+                  <p class="aditional" style="position:fixed;"><b>Posts realizados: {{dpostx}}</p></b>
+                </div>
+
                 </div>
             </div>
             
@@ -344,19 +368,22 @@ ul {
                 </div>
             </div>
 
+
+            <!-- NOTIFICACIONES -->
+            
             <div class="campana"> 
             <div class="container2">  
              <input type="checkbox" name="" class="btn2" />  
-             <div class="box2">  
+             <div class="box2"> 
               <div class="header2">  
-               <p>Notifications</p>   
+               <p style="color: #F5F2E7;" >Notifications</p>   
               </div>  
               <div class="content">
               {%for notification, date in notifs%}
               <div class="notification">  
                 <div class="text">  
-                 <p><span class="name">{{notification}}</p>  
-                 <p class="time">{{date}}</p> 
+                 <p><span class="name" style="color: #F5F2E7;" >{{notification}}</p>  
+                 <p class="time" style="color: #F5F2E7;" >{{date}}</p> 
                 </div>  
                </div> 
               {%endfor%} 
@@ -366,10 +393,7 @@ ul {
             </div> 
 
 
-
-
-
-                
+            
             <script>
             function openLeftMenu() {
                 document.getElementById("leftMenu").style.display = "block";
@@ -378,9 +402,10 @@ ul {
             function closeLeftMenu() {
                 document.getElementById("leftMenu").style.display = "none";
             }
-
-            
             </script>
+
+            <!-- Box para post -->
+
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
             <div class="container bootstrap snippets bootdey">
                 <div class="row">   
@@ -409,6 +434,8 @@ ul {
                           <div class="widget-post__actions post--actions">
                             <div class="post-actions__widget">
                               <button class="btn post-actions__publish" action="submit">Post</button>
+
+                              <!-- QUEUE DE LOS POSTS -->
                               <select name="datetopost" id="datetopost" class="post-actions_dropdown">
                                 <option value=0>Publicar ahora</option>
                                 <option value=5>Publicar en 5 minutos</option>
@@ -417,6 +444,8 @@ ul {
                                 <option value=60>Publicar en 1 hora</option>
                                 <option value=1440>Publicar en 24 horas</option>
                               </select>
+
+                              <!-- CATEGORIAS DE LOS POSTS -->
                               <select name="categories" id="categories" class="post-actions_dropdown">
                                 <option value="politica">Política</option>
                                 <option value="cine">Cine</option>
