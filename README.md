@@ -24,6 +24,7 @@
     * Confirmar la contraseña
     * Programar tiempos para realizar un post
     * Ver notificaciones de la página
+    * Escribir un comentario en los posts
 
 
 *   Elegir los temas que más le interesan a la persona. Puede elegir entre:
