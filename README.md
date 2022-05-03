@@ -53,7 +53,7 @@
 
 # Profiling
 
-Se utilizó "Flask Profiler" como herramienta para hacer el profiling del programa.
+Se utilizó "Flask Profiler" como herramienta para hacer el profiling del API.
 
 A continuación se adjunta una imagen del profiling.
 
