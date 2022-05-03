@@ -314,7 +314,40 @@ ul {
 
 
 
+/** Comments **/
+
+.container_comment {
+	max-width: 640px;
+	margin: 30px auto;
+	background: #fff;
+	border-radius: 8px;
+	padding: 20px;
+}
+
+.comment {
+	display: block;
+	transition: all 1s;
+}
+.commentClicked {
+	min-height: 0px;
+	border: 1px solid #eee;
+	border-radius: 5px;
+	padding: 5px 10px
+}
+
+.container_comment textarea {
+	width: 100%;
+	border: none;
+	background: #E8E8E8;
+	padding: 5px 10px;
+	height: 50%;
+	border-radius: 5px 5px 0px 0px;
+	border-bottom: 2px solid #016BA8;
+	transition: all 0.5s;
+	margin-top: 15px;
+}
     </style>
+    
 
     <link rel="stylesheet" href="/static/css/style2.css">
 
@@ -414,14 +447,14 @@ ul {
                     <div>
                         <img src=""  alt="">
                     </div>
-                    <div class="fb-user-details">
-                        <h3><a href="#" class="#">{{username}}</a></h3>
+                    <div  class="fb-user-details">
+                        <h3><a style="background-color: #cccccc;" href="#" class="#">{{username}}</a></h3>
                     </div>
                     <div class="widget-post" aria-labelledby="post-header-title">
-                        <div class="widget-post__header">
+                        <div  class="widget-post__header">
                           <h2 class="widget-post__title" id="post-header-title">
                               <i class="fa fa-pencil" aria-hidden="true"></i>
-                            Create a New Post
+                            Create a New Post 
                           </h2>
                         </div>
                         <form id="widget-form" class="widget-post__form" name="form" aria-label="post widget" method="POST">
@@ -467,7 +500,28 @@ ul {
                         <h2>Category: {{category}}</h2>
                         <h6>Date Posted: {{date}}</h6>
                           <div class="postbox" style="height:200px;">{{post}}</div>
+
+                          <!-- Comments -->
+                          <section id="app">
+                            <div class="container_comment">
+                              <div class="row">
+                                <div class="col-6">
+                                  <div class="comment">
+                                <p v-for="items in item" v-text="items"></p>
+                                  </div> <!--End Comment-->
+                                  </div> <!--End col -->
+                                  </div> <!-- End row -->
+                              <div class="row">
+                                <div class="col-6">
+                              <textarea type="text" class="input" placeholder="Let {{username}} know what you think about!" v-model="newItem" @keyup.enter="addItem()"></textarea>
+                                  <button style="background-color: #2c4952;" v-on:click="addItem()" class='primaryContained float-right' type="submit">Add Comment</button>
+                                </div> <!-- End col -->
+                              </div> <!--End Row -->
+                            </div> <!--End Container -->
+                          </section> <!-- end App -->
                       </div>
+
+                      
                       <br>
                     {%endfor%}
 
