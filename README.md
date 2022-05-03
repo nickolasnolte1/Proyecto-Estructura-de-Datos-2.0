@@ -32,11 +32,11 @@
     * Arte
     * Programación
 
-    * Realizar posts en la página de feed
-    * Ver posts realizados anteriormente.
-    * Programar tiempos para realizar un post
-    * Ver notificaciones de la página
-    * Escribir un comentario en los posts
+* Realizar posts en la página de feed
+* Ver posts realizados anteriormente.
+* Programar tiempos para realizar un post
+* Ver notificaciones de la página
+* Escribir un comentario en los posts
 
 ### El programa actualmente no se encuentra enlazado con ninguna base de datos, por lo que la función de Sign In todavía no está habilitada, eso será para la siguiente entrega de proyecto.
 
