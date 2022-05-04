@@ -83,15 +83,9 @@ class Stack:
     def __init__(self):
         self.stack = []
 
-    def isEmpty(self) -> bool:
-        return True if len(self.stack) == 0 else False
-
     def length(self) -> int:
         return len(self.stack)
-
-    def top(self, noti):
-        return self.stack[-1]  
-
+  
     def push(self, noti) -> None:
         time=datetime.now().strftime('%m-%d-%Y %H:%M:%S.%f')
         x=Notification(noti, time)
