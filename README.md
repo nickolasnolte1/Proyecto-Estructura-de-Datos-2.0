@@ -20,7 +20,7 @@
 *   Crear un perfil a través de la página de Signup
     * Username
     * Correo
-    * Contraseña
+    * Contraseña 
     * Confirmar la contraseña
 
 
