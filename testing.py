@@ -1,5 +1,5 @@
 import unittest
-from functions import Queue, crear_usuario, agregar_intereses, users, Stack, postsx, notifications
+from functions import crear_usuario, agregar_intereses, users, postsx, notifications
 from flask import Flask, render_template
 from app import app
 
@@ -56,8 +56,5 @@ class Testprueba(unittest.TestCase):
 
 
     
-        
-
-
 if __name__ == "__main__":
     unittest.main()
