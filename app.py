@@ -1,8 +1,14 @@
-from flask import Flask, render_template, request, url_for, redirect, flash
+from flask import Flask, render_template, request, url_for, redirect, flash, Response
 from flask.wrappers import Request
 from functions import crear_usuario, printear_notifications, printear_posts, users, agregar_intereses, printear_informacion, postsx, check, notifications
 import flask_profiler
 import re
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
+import networkx as nx
+import matplotlib
+import matplotlib.pyplot as plt
+from io import BytesIO
 
 
 #para verificar el formato del email. 
@@ -86,7 +92,6 @@ def home(user_id):
             users.graph_edge(username, friend)
             users.disp_graph()
             users.generate_edges()
-            users.display_graph()
         if request.form['btn']=='post':
             post=request.form.get("post23")
             category=request.form.get('categories')
@@ -101,6 +106,30 @@ def home(user_id):
             postinfo=printear_posts(postsx)
             notifs=printear_notifications(notifications)
     return render_template('homepage.html', username=username, email=email, password=password, interests=interests, postinfo=postinfo, notifs=notifs)
+
+@app.route('/print-plot')
+def plot_png():
+    G = nx.DiGraph()  
+    G.add_edges_from(users.edges)
+    vals=[]
+    val_map={}
+    x=10.0
+    for name in users.edges:
+        vals+=name[0]
+    for i in range(3):
+        val_map[vals[i]]=x
+        x-=2
+    values = [val_map.get(node, 0.30) for node in G.nodes()]
+    black_edges = [edge for edge in G.edges()]
+    cmap = matplotlib.colors.ListedColormap(['C0', 'darkorange'])
+    pos = nx.spring_layout(G)
+    nx.draw_networkx_nodes(G, pos, node_color = values, node_size = 1000, cmap=cmap)
+    nx.draw_networkx_labels(G, pos)
+    nx.draw_networkx_edges(G, pos, edgelist=black_edges, arrows=False)
+    fig = Figure()
+    img = BytesIO()
+    FigureCanvas(fig).print_png(img)
+    return Response(output.getvalue(), mimetype='image/png')
 
 
 if __name__ == "__main__":

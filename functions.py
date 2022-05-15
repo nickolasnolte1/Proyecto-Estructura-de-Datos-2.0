@@ -138,31 +138,7 @@ class Graph():
                 # if edge exists then append
                 self.edges.append((node, neighbour))
     
-    def display_graph(self):
-        G = nx.DiGraph()  
-        G.add_edges_from(self.edges)
-        vals=[]
-        val_map={}
-        x=10.0
-        for name in self.edges:
-            vals+=name[0]
-
-        for i in range(3):
-            val_map[vals[i]]=x
-            x-=2
-        values = [val_map.get(node, 0.30) for node in G.nodes()]
-
-
-        black_edges = [edge for edge in G.edges()]
-        cmap = matplotlib.colors.ListedColormap(['C0', 'darkorange'])
-        pos = nx.spring_layout(G)
-        nx.draw_networkx_nodes(G, pos, 
-                            node_color = values, node_size = 1000, cmap=cmap)
-        nx.draw_networkx_labels(G, pos)
-        nx.draw_networkx_edges(G, pos, edgelist=black_edges, arrows=False)
-        plt.savefig('save as png.png')
-        #plt.show()
-
+        
 users=Graph()
 
 b=User(0, "esteban", "estebansamayoa@ufm.edu","12345", ["politica", "programacion"])
@@ -176,6 +152,7 @@ users.graph_edge("esteban","danielbehar")
 users.graph_edge("esteban","nickonolte")
 users.graph_edge("nickonolte","danielbehar")
 users.disp_graph()
+users.generate_edges()
 
 
 
