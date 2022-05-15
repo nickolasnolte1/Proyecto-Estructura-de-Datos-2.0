@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, url_for, redirect, flash
 from flask.wrappers import Request
-from functions import crear_usuario, printear_notifications, printear_posts, users, agregar_intereses, i, printear_informacion, postsx, check, notifications
+from functions import crear_usuario, printear_notifications, printear_posts, users, agregar_intereses, printear_informacion, postsx, check, notifications
 import flask_profiler
 import re
 
@@ -53,12 +53,13 @@ def signup():
     if (username):
         if check(email)=="Valid Email":
             if password==confirm:
-                a, user_id=crear_usuario(username,i, email, password)
+                a, user_id=crear_usuario(username, email, password)
                 return redirect(url_for('categories', user_id=user_id))
             else:
                 flash("Passwords don't match", "warning")
         else:
             flash("Invalid email address", "warning")
+    print(users.users)
     return render_template('signup.html')
 
 @app.route('/categories/<user_id>', methods = ["GET", "POST"])
@@ -79,18 +80,26 @@ def home(user_id):
     postinfo=printear_posts(postsx)
     notifs=printear_notifications(notifications)
     if request.method == 'POST':
-        post=request.form.get("post23")
-        category=request.form.get('categories')
-        minutes=request.form.get('datetopost')
-        print(post)
-        print(category)
-        postsx.enqueue(post, minutes, category)
-        if int(minutes)>0:
-            notifications.push(f"Post will be published in {minutes} minutes.")
-        else:
-            notifications.push("Post was published Successfully!")
-        postinfo=printear_posts(postsx)
-        notifs=printear_notifications(notifications)
+        if request.form['btn']=='Accept':
+            friend="danielbehar"
+            print(f"EL USERNAME DEL AMIGO ES:{friend}")
+            users.graph_edge(username, friend)
+            users.disp_graph()
+            users.generate_edges()
+            users.display_graph()
+        if request.form['btn']=='post':
+            post=request.form.get("post23")
+            category=request.form.get('categories')
+            minutes=request.form.get('datetopost')
+            print(post)
+            print(category)
+            postsx.enqueue(post, minutes, category)
+            if int(minutes)>0:
+                notifications.push(f"Post will be published in {minutes} minutes.")
+            else:
+                notifications.push("Post was published Successfully!")
+            postinfo=printear_posts(postsx)
+            notifs=printear_notifications(notifications)
     return render_template('homepage.html', username=username, email=email, password=password, interests=interests, postinfo=postinfo, notifs=notifs)
 
 

@@ -2,12 +2,13 @@ from typing import NamedTuple
 from datetime import datetime, timedelta
 import json
 import re
+import networkx as nx
+import matplotlib
+import matplotlib.pyplot as plt
 
 from numpy import sort
 
 
-users=[]
-i=0
 
 class Notification(NamedTuple):
     notification: str
@@ -95,6 +96,87 @@ class Stack:
     def pop(self) -> None:
         self.stack.pop()
 
+class Graph():
+    def __init__(self):
+        self.friends = {}
+        self.users = []
+        self.edges=[]
+
+    def graph_node(self, node):
+        if node not in self.users:
+            self.users.append(node)
+        else:
+            print("The given node exists")
+    
+    def graph_edge(self, user1, user2):
+        temp = []
+        for node in self.users:
+            if node.username==user1:
+                a=node.username
+                for node in self.users:
+                    if node.username==user2: 
+                        b=node.username
+                        if a not in self.friends:
+                            temp.append(b)
+                            self.friends[a] = temp
+                            break
+                        elif a in self.friends:
+                            temp.extend(self.friends[a])
+                            temp.append(b)
+                            self.friends[a] = temp
+                            break
+    
+    def disp_graph(self):
+        for node in self.friends:
+            print(node, " -> ", [i for i in self.friends[node]])
+    
+    def generate_edges(self):
+        # for each node in graph
+        for node in self.friends:
+            # for each neighbour node of a single node
+            for neighbour in self.friends[node]:
+                # if edge exists then append
+                self.edges.append((node, neighbour))
+    
+    def display_graph(self):
+        G = nx.DiGraph()  
+        G.add_edges_from(self.edges)
+        vals=[]
+        val_map={}
+        x=10.0
+        for name in self.edges:
+            vals+=name[0]
+
+        for i in range(3):
+            val_map[vals[i]]=x
+            x-=2
+        values = [val_map.get(node, 0.30) for node in G.nodes()]
+
+
+        black_edges = [edge for edge in G.edges()]
+        cmap = matplotlib.colors.ListedColormap(['C0', 'darkorange'])
+        pos = nx.spring_layout(G)
+        nx.draw_networkx_nodes(G, pos, 
+                            node_color = values, node_size = 1000, cmap=cmap)
+        nx.draw_networkx_labels(G, pos)
+        nx.draw_networkx_edges(G, pos, edgelist=black_edges, arrows=False)
+        plt.savefig('save as png.png')
+        #plt.show()
+
+users=Graph()
+
+b=User(0, "esteban", "estebansamayoa@ufm.edu","12345", ["politica", "programacion"])
+c=User(1, "danielbehar", "danielbehar@ufm.edu","diosesmipastor", ["musica", "politica"])
+d=User(2, "nickonolte", "nickolasnolte@ufm.edu","bodoque33", ["programacion", "deportes"])
+users.graph_node(b)
+users.graph_node(c)
+users.graph_node(d)
+print(users.users)
+users.graph_edge("esteban","danielbehar")
+users.graph_edge("esteban","nickonolte")
+users.graph_edge("nickonolte","danielbehar")
+users.disp_graph()
+
 
 
 
@@ -108,45 +190,48 @@ notifications=Stack()
 
 notifications.push("Welcome to JINX! Sign Up Successful")
 
-b=User(0, "esteban", "estebansamayoa@ufm.edu","12345", ["politica", "programacion"])
-users.append(b)
 
-def crear_usuario(username,i, email, password):
+def crear_usuario(username, email, password):
+    i=len(users.users)
     interests=[]
     a=User(i,username, email, password, interests)
-    i+=1
-    users.append(a)
+    users.graph_node(a)
+    print("_______________________________________\n")
+    print(users.users)
+    print("_______________________________________\n")
+    i=len(users.users)
     return users, i 
 
-def agregar_intereses(users, i, interests):
-    a=users[i]
-    print(a.interests)
+def agregar_intereses(users,i, interests):
+    a=users.users[0]
+    print("___________USERS QUE ENTRAN A INTERESES____________\n")
+    print(users.users)
+    print("_______________________________________\n")
+    for user in users.users:
+        if user.id==i-1:
+            a=user
+        else: 
+            continue
     for interes in interests:
         a.interests.append(interes)
-    print(a)
-    return users, i
+    print("___________USERS QUE ENTRAN A INTERESES DESPUES DE AGREGAR INTÉRES____________\n")
+    print(users.users)
+    print("_______________________________________\n")
+    return users, i-1
 
 
-
-# def agregar_post(postsx,post, category, n):
-#     todaydate=datetime.today()
-#     a=Post(datetime.today().strftime('%Y-%m-%d-%H:%M:%S'), post, category)
-#     node=Node(a)
-#     if postsx.headval is None:
-#         postsx.headval = node
-#         return postsx
-#     laste = postsx.headval
-#     while(laste.nextval):
-#         laste = laste.nextval
-#     laste.nextval=node
-#     return postsx
 
 def printear_informacion(users,i):
-    user=users[i]
-    username=user.username
-    email =user.email
-    password=user.password
-    interests=user.interests
+    a=users.users[0]
+    for user in users.users:
+        if user.id==i:
+            a=user
+        else: 
+            continue
+    username=a.username
+    email =a.email
+    password=a.password
+    interests=a.interests
     return username, email, password, interests
 
 def printear_posts(postsx):
@@ -181,5 +266,7 @@ def check(email):
  
     else:
         print("Invalid Email")
+
+
 
 

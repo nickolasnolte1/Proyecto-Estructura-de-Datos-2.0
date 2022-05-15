@@ -431,49 +431,17 @@ ul {
                     <h6 class="dropdown-header">Friend Requests:</h6>
 
 
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">
-                      <div class="text-left user-item" style="display: inline-block; margin-left: 10px; width: 100px;">
-                        Elon Musk
-                      </div>
-                      <span class="text-right">
-                          <input type="button" class="btn btn-primary btn-sm" value="Accept">
-                          <input type="button" class="btn btn-default btn-sm" value="Reject">
-                      </span>
-                    </a>
 
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">
-                      <div class="text-left user-item" style="display: inline-block; margin-left: 10px; width: 100px;">
-                        Steve Jobs
+                    <a class="dropdown-item">
+                      <div class="text-left user-item" style="display: inline-block; margin-left: 10px; width: 100px;" name="friendname" value="danielbehar">
+                        danielbehar
                       </div>
-                      <span class="text-right">
-                          <input type="button" class="btn btn-primary btn-sm" value="Accept">
-                          <input type="button" class="btn btn-default btn-sm" value="Reject">
-                      </span>
-                    </a>
-
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">
-                      <div class="text-left user-item" style="display: inline-block; margin-left: 10px; width: 100px;">
-                        Fernando Boiton
-                      </div>
-                      <span class="text-right">
-                          <input type="button" class="btn btn-primary btn-sm" value="Accept">
-                          <input type="button" class="btn btn-default btn-sm" value="Reject">
-                      </span>
-                    </a>
-
-
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">
-                      <div class="text-left user-item" style="display: inline-block; margin-left: 10px; width: 100px;">
-                        Fernanda García
-                      </div>
-                      <div style="display: inline-block;">
-                        <input type="button" class="btn btn-primary btn-sm" value="Accept">
-                        <input type="button" class="btn btn-default btn-sm" value="Reject">
-                      </div>
+                      <br>
+                      <form class="text-right" method="POST">
+                          <input type="submit" class="btn btn-primary btn-sm" value="Accept" name="btn">
+                          <input type="submit" class="btn btn-default btn-sm" value="Reject" name="btn">
+                      </form>
                     </a>
                   </div>
                 </li>
@@ -550,7 +518,7 @@ ul {
                           </div>
                           <div class="widget-post__actions post--actions">
                             <div class="post-actions__widget">
-                              <button class="btn post-actions__publish" action="submit">Post</button>
+                              <button class="btn post-actions__publish" action="submit" name="btn" value="post">Post</button>
 
                               <!-- QUEUE DE LOS POSTS -->
                               <select name="datetopost" id="datetopost" class="post-actions_dropdown">
