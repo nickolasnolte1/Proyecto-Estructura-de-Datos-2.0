@@ -152,6 +152,8 @@ users.graph_edge("esteban","nickonolte")
 users.graph_edge("nickonolte","esteban")
 users.graph_edge("nickonolte","josereyes")
 users.graph_edge("fernandagonzalez","josereyes")
+users.graph_edge("fernandagonzalez","nickonolte")
+users.graph_edge("esteban","fernandagonzalez")
 users.disp_graph()
 users.generate_edges()
 

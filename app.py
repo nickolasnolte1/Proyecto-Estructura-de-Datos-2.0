@@ -119,19 +119,16 @@ def plot_png():
     x=10.0
     for name in users.edges:
         vals+=name[0]
-    for i in range(3):
-        val_map[vals[i]]=x
-        x-=2
-    values = [val_map.get(node, 0.30) for node in G.nodes()]
+    values = [val_map.get(node, 0.80) for node in G.nodes()]
     black_edges = [edge for edge in G.edges()]
-    cmap = matplotlib.colors.ListedColormap(['C0', 'darkorange'])
+    cmap = matplotlib.colors.ListedColormap(['C0', 'blue'])
     pos = nx.spring_layout(G)
-    nx.draw_networkx_nodes(G, pos, node_color = values, node_size = 1000, cmap=cmap)
+    nx.draw_networkx_nodes(G, pos, node_color = values, node_size = 5000, cmap=cmap)
     nx.draw_networkx_labels(G, pos)
     nx.draw_networkx_edges(G, pos, edgelist=black_edges, arrows=False)
     output = BytesIO()
-    plt.savefig(output) # save the image to the stream
-    output.seek(0) # writing moved the cursor to the end of the file, reset
+    plt.savefig(output) 
+    output.seek(0)
     plt.clf()
     return Response(output.getvalue(), mimetype='image/png')
 
