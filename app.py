@@ -107,10 +107,13 @@ def home(user_id):
             notifs=printear_notifications(notifications)
     return render_template('homepage.html', username=username, email=email, password=password, interests=interests, postinfo=postinfo, notifs=notifs)
 
+
+plt.rcParams["figure.figsize"] = [20, 12]
+plt.rcParams["figure.autolayout"] = True
 @app.route('/print-plot')
 def plot_png():
     G = nx.DiGraph()  
-    G.add_edges_from(users.edges)
+    G.add_edges_from(users.edges) 
     vals=[]
     val_map={}
     x=10.0
@@ -126,9 +129,10 @@ def plot_png():
     nx.draw_networkx_nodes(G, pos, node_color = values, node_size = 1000, cmap=cmap)
     nx.draw_networkx_labels(G, pos)
     nx.draw_networkx_edges(G, pos, edgelist=black_edges, arrows=False)
-    fig = Figure()
-    img = BytesIO()
-    FigureCanvas(fig).print_png(img)
+    output = BytesIO()
+    plt.savefig(output) # save the image to the stream
+    output.seek(0) # writing moved the cursor to the end of the file, reset
+    plt.clf()
     return Response(output.getvalue(), mimetype='image/png')
 
 
