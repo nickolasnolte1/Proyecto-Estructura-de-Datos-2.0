@@ -33,7 +33,6 @@ class LinkedList:
     def listprint(self):
       printval = self.headval
       while printval is not None:
-         print (printval.dataval)
          printval = printval.nextval
 
 
@@ -100,7 +99,7 @@ class Graph():
     def __init__(self):
         self.friends = {}
         self.users = []
-        self.edges=[]
+        self.edges=[] 
 
     def graph_node(self, node):
         if node not in self.users:
@@ -131,12 +130,9 @@ class Graph():
             print(node, " -> ", [i for i in self.friends[node]])
     
     def generate_edges(self):
-        # for each node in graph
         for node in self.friends:
-            # for each neighbour node of a single node
-            for neighbour in self.friends[node]:
-                # if edge exists then append
-                self.edges.append((node, neighbour))
+            for friend in self.friends[node]:
+                self.edges.append((node, friend))
     
         
 users=Graph()
@@ -144,13 +140,18 @@ users=Graph()
 b=User(0, "esteban", "estebansamayoa@ufm.edu","12345", ["politica", "programacion"])
 c=User(1, "danielbehar", "danielbehar@ufm.edu","diosesmipastor", ["musica", "politica"])
 d=User(2, "nickonolte", "nickolasnolte@ufm.edu","bodoque33", ["programacion", "deportes"])
+e=User(3, "josereyes", "josereyes@ufm.edu","enano", ["deportes"])
+f=User(4, "fernandagonzalez", "fernandagonzalez@ufm.edu","estructurasdedatos", ["programacion", "musica", "politica"])
 users.graph_node(b)
 users.graph_node(c)
 users.graph_node(d)
-print(users.users)
+users.graph_node(e)
+users.graph_node(f)
 users.graph_edge("esteban","danielbehar")
 users.graph_edge("esteban","nickonolte")
-users.graph_edge("nickonolte","danielbehar")
+users.graph_edge("nickonolte","esteban")
+users.graph_edge("nickonolte","josereyes")
+users.graph_edge("fernandagonzalez","josereyes")
 users.disp_graph()
 users.generate_edges()
 
@@ -173,17 +174,11 @@ def crear_usuario(username, email, password):
     interests=[]
     a=User(i,username, email, password, interests)
     users.graph_node(a)
-    print("_______________________________________\n")
-    print(users.users)
-    print("_______________________________________\n")
     i=len(users.users)
     return users, i 
 
 def agregar_intereses(users,i, interests):
     a=users.users[0]
-    print("___________USERS QUE ENTRAN A INTERESES____________\n")
-    print(users.users)
-    print("_______________________________________\n")
     for user in users.users:
         if user.id==i-1:
             a=user
@@ -191,9 +186,6 @@ def agregar_intereses(users,i, interests):
             continue
     for interes in interests:
         a.interests.append(interes)
-    print("___________USERS QUE ENTRAN A INTERESES DESPUES DE AGREGAR INTÉRES____________\n")
-    print(users.users)
-    print("_______________________________________\n")
     return users, i-1
 
 
@@ -220,7 +212,6 @@ def printear_posts(postsx):
             postinfo.append(i)
     postinfo.sort(key=lambda x: x.dateposted)
     postinfo.reverse()
-    print(postinfo)
     return postinfo
 
 
