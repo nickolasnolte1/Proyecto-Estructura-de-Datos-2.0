@@ -24,6 +24,13 @@ body {
   font-family: sans-serif;
 }
 
+/** Support@jinx.com **/
+.support{
+  text-align: center;
+  color: white;
+  font-family: "Arial";
+}
+
 
 /* * Post widget * */
 
@@ -362,6 +369,36 @@ ul {
   white-space: normal;
   vertical-align: bottom;
 }
+
+
+
+/** Search bar **/
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px;
+  float: left;
+  width: 80%;
+  background: white;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  color: white;
+  font-size: 17px;
+  border: 1px;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+
     </style>
     
 
@@ -377,7 +414,7 @@ ul {
             <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="background-color: #284147;" id="leftMenu">
                 <button style="color: white;" onclick="closeLeftMenu()" class="w3-bar-item w3-button w3-large">Close Menu &times;</button>
                 
-                <h3 style="text-align:center; font-size:x-large">ACCOUNT INFORMATION</h3>
+                <h3 style="text-align:center; font-size:x-large; color:white; margin-top:10px;">ACCOUNT INFORMATION</h3>
 
                 <div>
                 <p class="info" style="margin-top: 15px;"><b>Username: {{username}}</p></b>
@@ -386,7 +423,7 @@ ul {
                 <!-- Lista de intereses -->
                 <ul>
                 {% for interes in interests %}
-                <li class="info" ><b>{{interes}}</p></li>
+                <li class="info" ><b>{{interes}}</b></li>
                 {% endfor %}
                 </ul>
                 <div style="margin: 24px 0;">
@@ -394,11 +431,17 @@ ul {
                     <a class="aditional" style="margin-left: 19px;" href="#"><i class="fa fa-twitter"></i></a>  
                     <a class="aditional" style="margin-left: 19px;" href="#"><i class="fa fa-linkedin"></i></a>  
                     <a class="aditional" style="margin-left: 19px;" href="#"><i class="fa fa-facebook"></i></a> 
-                    <p class="aditional">support@jinx.com</p>
+                    <p style="font-size:larger ;" class="support">support@jinx.com</p>
                 </div>
                 <a href="http://127.0.0.1:5000/print-plot">
                   <button class="btn btn-primary btn-sm">Show Graph on MatPlotLib</button>
                </a>
+
+               
+               <form class="example" action="/action_page.php" style="margin:auto;max-width:300px; bottom: 25px;">
+                 <input style="margin-top:30px;" type="text" placeholder="Search..." name="search2">
+                 <button style="background-color:#396eff; margin-top:30px;" type="submit"><i class="fa fa-search"></i></button>
+               </form>
                 
 
                 </div>

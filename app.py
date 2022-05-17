@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 from io import BytesIO
 
+matplotlib.use('Agg')
 
 #para verificar el formato del email. 
 regex = r'\b[A-Za-z0-9_%+-.]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
@@ -49,6 +50,10 @@ def check(email):
 @app.route('/notifications')
 def noti():
     return render_template('notifications.html')
+
+@app.route('/profile')
+def profile ():
+    return render_template('profile.html')
 
 @app.route('/' , methods = ["GET", "POST"])
 @flask_profiler.profile()
