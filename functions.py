@@ -1,3 +1,4 @@
+from platform import node
 from typing import NamedTuple
 from datetime import datetime, timedelta
 import json
@@ -7,7 +8,6 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 from numpy import sort
-
 
 
 class Notification(NamedTuple):
@@ -21,20 +21,6 @@ class Post(NamedTuple):
     category: str
 
 
-class Node:
-   def __init__(self, dataval=None):
-      self.dataval = dataval
-      self.nextval = None
-
-class LinkedList:
-    def __init__(self):
-      self.headval = None
-
-    def listprint(self):
-      printval = self.headval
-      while printval is not None:
-         printval = printval.nextval
-
 
 class User(NamedTuple):
     id: int
@@ -43,7 +29,74 @@ class User(NamedTuple):
     password: str
     interests: list
 
-# Queue implementation in Python
+
+
+
+class Heap:
+    def __init__(self):
+        self.heap_list = [0]
+        self.current_size = 0
+ 
+    def sift_up(self, i):
+        while i // 2 > 0:
+            if self.heap_list[i] < self.heap_list[i // 2]:
+                self.heap_list[i], self.heap_list[i // 2] = self.heap_list[i // 2], self.heap_list[i]
+            i = i // 2
+ 
+    def insert(self, post, category, minutes):
+        current_time = datetime.now()
+        future_time = current_time + timedelta(minutes=int(minutes))
+        future_time_str = future_time.strftime('%m-%d-%Y %H:%M:%S.%f')
+        k=Post(future_time_str, post, category)
+        self.heap_list.append(k)
+        self.current_size += 1
+        self.sift_up(self.current_size)
+ 
+    def sift_down(self, i):
+        while (i * 2) <= self.current_size:
+            mc = self.min_child(i)
+            if self.heap_list[i] > self.heap_list[mc]:
+                self.heap_list[i], self.heap_list[mc] = self.heap_list[mc], self.heap_list[i]
+            i = mc
+ 
+    def min_child(self, i):
+        if (i * 2)+1 > self.current_size:
+            return i * 2
+        else:
+            if self.heap_list[i*2] < self.heap_list[(i*2)+1]:
+                return i * 2
+            else:
+                return (i * 2) + 1
+
+    def get_min(self):
+        if len(self.heap_list) == 0:
+            return 'Empty heap'
+        root = self.heap_list[1]
+        return root
+ 
+    def delete_min(self):
+        if len(self.heap_list) == 0:
+            return 'Empty heap'
+        root = self.heap_list[1]
+        self.heap_list[1] = self.heap_list[self.current_size]
+        *self.heap_list, _ = self.heap_list
+        self.current_size -= 1
+        self.sift_down(1)
+        return root
+
+
+
+postsx = Heap()
+postsx.insert("Python es un gran lenguaje de programación!", "Programación",0)
+postsx.insert("Ya vienen las elecciones de Guatemala!", "Politíca",-2)
+postsx.insert("Bad Bunny viene a Guatemala!", "Musica",20)
+postsx.insert("Doctor Strange In the Multiverse of Madness is Out!", "Peliculas", -10)
+postsx.insert("Ya salió el trailer de Thor Love and Thunder!", "Peliculas", 5)
+
+
+
+
+
 
 class Queue:
     def __init__(self):
@@ -133,6 +186,23 @@ class Graph():
         for node in self.friends:
             for friend in self.friends[node]:
                 self.edges.append((node, friend))
+
+    def search_user(self, start_user, key):
+        visited = []
+        queue = []     
+        visited.append(start_user)
+        queue.append(start_user)
+        while queue:
+            s = queue.pop(0) 
+            # print (s, end = " ") 
+            if s==key:
+                return s
+            for neighbour in self.friends[s]:
+                if neighbour not in visited:
+                    visited.append(neighbour)
+                    queue.append(neighbour)
+        return None
+
     
         
 users=Graph()
@@ -154,17 +224,13 @@ users.graph_edge("nickonolte","josereyes")
 users.graph_edge("fernandagonzalez","josereyes")
 users.graph_edge("fernandagonzalez","nickonolte")
 users.graph_edge("esteban","fernandagonzalez")
-users.disp_graph()
+# users.disp_graph()
 users.generate_edges()
+userprueba=users.search_user("fernandagonzalez","josereyes")
+print(userprueba)
 
 
 
-
-
-
-postsx=Queue()
-postsx.enqueue("Bad Bunny Viene a Guatemala!", 0, "Música")
-postsx.enqueue("Guerra de Rusia contra Ucrania!", 0, "Politica")
 
 notifications=Stack()
 
@@ -191,7 +257,6 @@ def agregar_intereses(users,i, interests):
     return users, i-1
 
 
-
 def printear_informacion(users,i):
     a=users.users[0]
     for user in users.users:
@@ -205,15 +270,39 @@ def printear_informacion(users,i):
     interests=a.interests
     return username, email, password, interests
 
+
+
 def printear_posts(postsx):
     postinfo=[]
-    current_time = datetime.now()
-    current_time = current_time.strftime('%m-%d-%Y %H:%M:%S.%f')
-    for i in postsx.queue:
-        if i.dateposted<=current_time:
-            postinfo.append(i)
+    currenttime=datetime.now().strftime('%m-%d-%Y %H:%M:%S.%f')
+    while (1):
+        node=postsx.get_min()
+        print(node)
+        if node.dateposted<=currenttime:
+            postinfo.append(node)
+            postsx.delete_min()
+        elif node.dateposted>=currenttime:
+            break
+        else: 
+            continue
+    postinfo.reverse() 
+    return postinfo
+
+
+def updatear_posts(postsx, postinfo):
     postinfo.sort(key=lambda x: x.dateposted)
-    postinfo.reverse()
+    currenttime=datetime.now().strftime('%m-%d-%Y %H:%M:%S.%f')
+    while (1):
+        node=postsx.get_min()
+        print(node)
+        if node.dateposted<=currenttime:
+            postinfo.append(node)
+            postsx.delete_min()
+        elif node.dateposted>=currenttime:
+            break
+        else: 
+            continue
+    postinfo.reverse() 
     return postinfo
 
 
@@ -236,7 +325,6 @@ def check(email):
  
     else:
         print("Invalid Email")
-
 
 
 
