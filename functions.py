@@ -36,6 +36,7 @@ class Heap:
     def __init__(self):
         self.heap_list = [0]
         self.current_size = 0
+        self.print_list=[]
  
     def sift_up(self, i):
         while i // 2 > 0:
@@ -273,37 +274,42 @@ def printear_informacion(users,i):
 
 
 def printear_posts(postsx):
-    postinfo=[]
     currenttime=datetime.now().strftime('%m-%d-%Y %H:%M:%S.%f')
     while (1):
         node=postsx.get_min()
         print(node)
         if node.dateposted<=currenttime:
-            postinfo.append(node)
+            lis=postsx.print_list
+            lis.append(node)
             postsx.delete_min()
+            lis.sort(key=lambda x: x.dateposted)
+            lis.reverse()
+            postsx.print_list=lis
         elif node.dateposted>=currenttime:
             break
         else: 
-            continue
-    postinfo.reverse() 
-    return postinfo
+            continue 
+    return postsx.print_list
 
 
-def updatear_posts(postsx, postinfo):
-    postinfo.sort(key=lambda x: x.dateposted)
+def updatear_posts(postsx):
     currenttime=datetime.now().strftime('%m-%d-%Y %H:%M:%S.%f')
     while (1):
         node=postsx.get_min()
         print(node)
         if node.dateposted<=currenttime:
-            postinfo.append(node)
+            lis=postsx.print_list
+            lis.append(node)
             postsx.delete_min()
+            lis.sort(key=lambda x: x.dateposted)
+            lis.reverse()
+            postsx.print_list=lis
         elif node.dateposted>=currenttime:
             break
         else: 
             continue
-    postinfo.reverse() 
-    return postinfo
+     
+    return postsx.print_list
 
 
 def printear_notifications(notifications):

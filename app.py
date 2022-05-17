@@ -101,7 +101,7 @@ def home(user_id):
                 notifications.push(f"Post will be published in {minutes} minutes.")
             else:
                 notifications.push("Post was published Successfully!")
-            postinfo=updatear_posts(postsx, postinfo)
+            postinfo=updatear_posts(postsx)
             notifs=printear_notifications(notifications)
     return render_template('homepage.html', username=username, email=email, password=password, interests=interests, postinfo=postinfo, notifs=notifs)
 
