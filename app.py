@@ -1,8 +1,15 @@
-from flask import Flask, render_template, request, url_for, redirect, flash
+from flask import Flask, render_template, request, url_for, redirect, flash, Response
 from flask.wrappers import Request
-from functions import crear_usuario, printear_notifications, printear_posts, users, agregar_intereses, printear_informacion, postsx, check, notifications
+from functions import crear_usuario, printear_notifications, printear_posts, users, agregar_intereses, printear_informacion, postsx, check, notifications, updatear_posts
 import flask_profiler
 import re
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
+import networkx as nx
+import matplotlib
+import matplotlib.pyplot as plt
+from datetime import datetime, timedelta
+from io import BytesIO
 
 
 #para verificar el formato del email. 
@@ -82,25 +89,46 @@ def home(user_id):
     if request.method == 'POST':
         if request.form['btn']=='Accept':
             friend="danielbehar"
-            print(f"EL USERNAME DEL AMIGO ES:{friend}")
             users.graph_edge(username, friend)
             users.disp_graph()
             users.generate_edges()
-            users.display_graph()
         if request.form['btn']=='post':
             post=request.form.get("post23")
             category=request.form.get('categories')
             minutes=request.form.get('datetopost')
-            print(post)
-            print(category)
-            postsx.enqueue(post, minutes, category)
+            postsx.insert(post,category, minutes)
             if int(minutes)>0:
                 notifications.push(f"Post will be published in {minutes} minutes.")
             else:
                 notifications.push("Post was published Successfully!")
-            postinfo=printear_posts(postsx)
+            postinfo=updatear_posts(postsx, postinfo)
             notifs=printear_notifications(notifications)
     return render_template('homepage.html', username=username, email=email, password=password, interests=interests, postinfo=postinfo, notifs=notifs)
+
+
+plt.rcParams["figure.figsize"] = [20, 12]
+plt.rcParams["figure.autolayout"] = True
+@app.route('/print-plot')
+def plot_png():
+    G = nx.DiGraph()  
+    G.add_edges_from(users.edges) 
+    vals=[]
+    val_map={}
+    x=10.0
+    for name in users.edges:
+        vals+=name[0]
+    values = [val_map.get(node, 0.80) for node in G.nodes()]
+    black_edges = [edge for edge in G.edges()]
+    cmap = matplotlib.colors.ListedColormap(['C0', 'blue'])
+    pos = nx.spring_layout(G)
+    nx.draw_networkx_nodes(G, pos, node_color = values, node_size = 5000, cmap=cmap)
+    nx.draw_networkx_labels(G, pos)
+    nx.draw_networkx_edges(G, pos, edgelist=black_edges, arrows=False)
+    output = BytesIO()
+    plt.savefig(output) 
+    output.seek(0)
+    plt.clf()
+    return Response(output.getvalue(), mimetype='image/png')
 
 
 if __name__ == "__main__":

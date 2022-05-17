@@ -1,3 +1,4 @@
+from platform import node
 from typing import NamedTuple
 from datetime import datetime, timedelta
 import json
@@ -7,7 +8,6 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 from numpy import sort
-
 
 
 class Notification(NamedTuple):
@@ -21,21 +21,6 @@ class Post(NamedTuple):
     category: str
 
 
-class Node:
-   def __init__(self, dataval=None):
-      self.dataval = dataval
-      self.nextval = None
-
-class LinkedList:
-    def __init__(self):
-      self.headval = None
-
-    def listprint(self):
-      printval = self.headval
-      while printval is not None:
-         print (printval.dataval)
-         printval = printval.nextval
-
 
 class User(NamedTuple):
     id: int
@@ -44,7 +29,74 @@ class User(NamedTuple):
     password: str
     interests: list
 
-# Queue implementation in Python
+
+
+
+class Heap:
+    def __init__(self):
+        self.heap_list = [0]
+        self.current_size = 0
+ 
+    def sift_up(self, i):
+        while i // 2 > 0:
+            if self.heap_list[i] < self.heap_list[i // 2]:
+                self.heap_list[i], self.heap_list[i // 2] = self.heap_list[i // 2], self.heap_list[i]
+            i = i // 2
+ 
+    def insert(self, post, category, minutes):
+        current_time = datetime.now()
+        future_time = current_time + timedelta(minutes=int(minutes))
+        future_time_str = future_time.strftime('%m-%d-%Y %H:%M:%S.%f')
+        k=Post(future_time_str, post, category)
+        self.heap_list.append(k)
+        self.current_size += 1
+        self.sift_up(self.current_size)
+ 
+    def sift_down(self, i):
+        while (i * 2) <= self.current_size:
+            mc = self.min_child(i)
+            if self.heap_list[i] > self.heap_list[mc]:
+                self.heap_list[i], self.heap_list[mc] = self.heap_list[mc], self.heap_list[i]
+            i = mc
+ 
+    def min_child(self, i):
+        if (i * 2)+1 > self.current_size:
+            return i * 2
+        else:
+            if self.heap_list[i*2] < self.heap_list[(i*2)+1]:
+                return i * 2
+            else:
+                return (i * 2) + 1
+
+    def get_min(self):
+        if len(self.heap_list) == 0:
+            return 'Empty heap'
+        root = self.heap_list[1]
+        return root
+ 
+    def delete_min(self):
+        if len(self.heap_list) == 0:
+            return 'Empty heap'
+        root = self.heap_list[1]
+        self.heap_list[1] = self.heap_list[self.current_size]
+        *self.heap_list, _ = self.heap_list
+        self.current_size -= 1
+        self.sift_down(1)
+        return root
+
+
+
+postsx = Heap()
+postsx.insert("Python es un gran lenguaje de programación!", "Programación",0)
+postsx.insert("Ya vienen las elecciones de Guatemala!", "Politíca",-2)
+postsx.insert("Bad Bunny viene a Guatemala!", "Musica",20)
+postsx.insert("Doctor Strange In the Multiverse of Madness is Out!", "Peliculas", -10)
+postsx.insert("Ya salió el trailer de Thor Love and Thunder!", "Peliculas", 5)
+
+
+
+
+
 
 class Queue:
     def __init__(self):
@@ -100,7 +152,7 @@ class Graph():
     def __init__(self):
         self.friends = {}
         self.users = []
-        self.edges=[]
+        self.edges=[] 
 
     def graph_node(self, node):
         if node not in self.users:
@@ -131,60 +183,54 @@ class Graph():
             print(node, " -> ", [i for i in self.friends[node]])
     
     def generate_edges(self):
-        # for each node in graph
         for node in self.friends:
-            # for each neighbour node of a single node
-            for neighbour in self.friends[node]:
-                # if edge exists then append
-                self.edges.append((node, neighbour))
+            for friend in self.friends[node]:
+                self.edges.append((node, friend))
+
+    def search_user(self, start_user, key):
+        visited = []
+        queue = []     
+        visited.append(start_user)
+        queue.append(start_user)
+        while queue:
+            s = queue.pop(0) 
+            # print (s, end = " ") 
+            if s==key:
+                return s
+            for neighbour in self.friends[s]:
+                if neighbour not in visited:
+                    visited.append(neighbour)
+                    queue.append(neighbour)
+        return None
+
     
-    def display_graph(self):
-        G = nx.DiGraph()  
-        G.add_edges_from(self.edges)
-        vals=[]
-        val_map={}
-        x=10.0
-        for name in self.edges:
-            vals+=name[0]
-
-        for i in range(3):
-            val_map[vals[i]]=x
-            x-=2
-        values = [val_map.get(node, 0.30) for node in G.nodes()]
-
-
-        black_edges = [edge for edge in G.edges()]
-        cmap = matplotlib.colors.ListedColormap(['C0', 'darkorange'])
-        pos = nx.spring_layout(G)
-        nx.draw_networkx_nodes(G, pos, 
-                            node_color = values, node_size = 1000, cmap=cmap)
-        nx.draw_networkx_labels(G, pos)
-        nx.draw_networkx_edges(G, pos, edgelist=black_edges, arrows=False)
-        plt.savefig('save as png.png')
-        #plt.show()
-
+        
 users=Graph()
 
 b=User(0, "esteban", "estebansamayoa@ufm.edu","12345", ["politica", "programacion"])
 c=User(1, "danielbehar", "danielbehar@ufm.edu","diosesmipastor", ["musica", "politica"])
 d=User(2, "nickonolte", "nickolasnolte@ufm.edu","bodoque33", ["programacion", "deportes"])
+e=User(3, "josereyes", "josereyes@ufm.edu","enano", ["deportes"])
+f=User(4, "fernandagonzalez", "fernandagonzalez@ufm.edu","estructurasdedatos", ["programacion", "musica", "politica"])
 users.graph_node(b)
 users.graph_node(c)
 users.graph_node(d)
-print(users.users)
+users.graph_node(e)
+users.graph_node(f)
 users.graph_edge("esteban","danielbehar")
 users.graph_edge("esteban","nickonolte")
-users.graph_edge("nickonolte","danielbehar")
-users.disp_graph()
+users.graph_edge("nickonolte","esteban")
+users.graph_edge("nickonolte","josereyes")
+users.graph_edge("fernandagonzalez","josereyes")
+users.graph_edge("fernandagonzalez","nickonolte")
+users.graph_edge("esteban","fernandagonzalez")
+# users.disp_graph()
+users.generate_edges()
+userprueba=users.search_user("fernandagonzalez","josereyes")
+print(userprueba)
 
 
 
-
-
-
-postsx=Queue()
-postsx.enqueue("Bad Bunny Viene a Guatemala!", 0, "Música")
-postsx.enqueue("Guerra de Rusia contra Ucrania!", 0, "Politica")
 
 notifications=Stack()
 
@@ -196,17 +242,11 @@ def crear_usuario(username, email, password):
     interests=[]
     a=User(i,username, email, password, interests)
     users.graph_node(a)
-    print("_______________________________________\n")
-    print(users.users)
-    print("_______________________________________\n")
     i=len(users.users)
     return users, i 
 
 def agregar_intereses(users,i, interests):
     a=users.users[0]
-    print("___________USERS QUE ENTRAN A INTERESES____________\n")
-    print(users.users)
-    print("_______________________________________\n")
     for user in users.users:
         if user.id==i-1:
             a=user
@@ -214,11 +254,7 @@ def agregar_intereses(users,i, interests):
             continue
     for interes in interests:
         a.interests.append(interes)
-    print("___________USERS QUE ENTRAN A INTERESES DESPUES DE AGREGAR INTÉRES____________\n")
-    print(users.users)
-    print("_______________________________________\n")
     return users, i-1
-
 
 
 def printear_informacion(users,i):
@@ -234,16 +270,39 @@ def printear_informacion(users,i):
     interests=a.interests
     return username, email, password, interests
 
+
+
 def printear_posts(postsx):
     postinfo=[]
-    current_time = datetime.now()
-    current_time = current_time.strftime('%m-%d-%Y %H:%M:%S.%f')
-    for i in postsx.queue:
-        if i.dateposted<=current_time:
-            postinfo.append(i)
+    currenttime=datetime.now().strftime('%m-%d-%Y %H:%M:%S.%f')
+    while (1):
+        node=postsx.get_min()
+        print(node)
+        if node.dateposted<=currenttime:
+            postinfo.append(node)
+            postsx.delete_min()
+        elif node.dateposted>=currenttime:
+            break
+        else: 
+            continue
+    postinfo.reverse() 
+    return postinfo
+
+
+def updatear_posts(postsx, postinfo):
     postinfo.sort(key=lambda x: x.dateposted)
-    postinfo.reverse()
-    print(postinfo)
+    currenttime=datetime.now().strftime('%m-%d-%Y %H:%M:%S.%f')
+    while (1):
+        node=postsx.get_min()
+        print(node)
+        if node.dateposted<=currenttime:
+            postinfo.append(node)
+            postsx.delete_min()
+        elif node.dateposted>=currenttime:
+            break
+        else: 
+            continue
+    postinfo.reverse() 
     return postinfo
 
 
@@ -266,7 +325,6 @@ def check(email):
  
     else:
         print("Invalid Email")
-
 
 
 
