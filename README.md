@@ -49,7 +49,8 @@
 
 
 # Diagrama de casos de uso
-<img width="680" alt="image" src="https://user-images.githubusercontent.com/61555652/166617895-d232a885-6310-4f87-b77d-aa2cea6eeb59.png">
+<img width="705" alt="image" src="https://user-images.githubusercontent.com/61555652/168938429-4fe39924-d9e4-40fd-b9e6-37c1d8e67498.png">
+
 
 
 # Profiling
