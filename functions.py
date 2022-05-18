@@ -195,7 +195,6 @@ class Graph():
         queue.append(start_user)
         while queue:
             s = queue.pop(0) 
-            # print (s, end = " ") 
             if s==key:
                 return s
             for neighbour in self.friends[s]:
@@ -212,7 +211,7 @@ b=User(0, "esteban", "estebansamayoa@ufm.edu","12345", ["politica", "programacio
 c=User(1, "danielbehar", "danielbehar@ufm.edu","diosesmipastor", ["musica", "politica"])
 d=User(2, "nickonolte", "nickolasnolte@ufm.edu","bodoque33", ["programacion", "deportes"])
 e=User(3, "josereyes", "josereyes@ufm.edu","enano", ["deportes"])
-f=User(4, "fernandagonzalez", "fernandagonzalez@ufm.edu","estructurasdedatos", ["programacion", "musica", "politica"])
+f=User(4, "fernandagonzalez", "fernandagonzalez@ufm.edu","estructurasdedatos", ["programacion", "musica", "peliculas"])
 users.graph_node(b)
 users.graph_node(c)
 users.graph_node(d)
@@ -225,10 +224,14 @@ users.graph_edge("nickonolte","josereyes")
 users.graph_edge("fernandagonzalez","josereyes")
 users.graph_edge("fernandagonzalez","nickonolte")
 users.graph_edge("esteban","fernandagonzalez")
+users.graph_edge("josereyes","fernandagonzalez")
+users.graph_edge("danielbehar","nickonolte")
 # users.disp_graph()
 users.generate_edges()
-userprueba=users.search_user("fernandagonzalez","josereyes")
-print(userprueba)
+
+
+print(users.search_user("nickonolte", "danielbehar"))
+
 
 
 
@@ -258,18 +261,38 @@ def agregar_intereses(users,i, interests):
     return users, i-1
 
 
-def printear_informacion(users,i):
+def BinarySearch(users, user_id):
+    first = 0
+    last = len(users.users)-1
+    index = -1
+    while (first <= last) and (index == -1):
+        mid = (first+last)//2
+        if users.users[mid].id == user_id:
+            index = mid
+        else:
+            if user_id<users.users[mid].id:
+                last = mid -1
+            else:
+                first = mid +1
+    username=users.users[index].username
+    email=users.users[index].email
+    password=users.users[index].password
+    interests=users.users[index].interests
+    return username, email, password, interests
+
+
+
+def info_username(users, username):
     a=users.users[0]
     for user in users.users:
-        if user.id==i:
+        if user.username==username:
             a=user
         else: 
             continue
     username=a.username
     email =a.email
-    password=a.password
     interests=a.interests
-    return username, email, password, interests
+    return username, email, interests
 
 
 

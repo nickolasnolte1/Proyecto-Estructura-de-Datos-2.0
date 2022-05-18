@@ -107,22 +107,17 @@ p {
 
     <div class="card-container">
         
-        <h3>Ricky Park</h3>
-        <h6>New York</h6>
-        <p>User interface designer and <br/> front-end developer</p>
+        <h3>{{username}}</h3>
+        <h6>{{email}}</h6>
         <div class="buttons">
         </div>
         <div class="skills">
             <h6 style="font-size: x-large;" >Intereses</h6>
             <ul>
-                <li>UI / UX</li>
-                <li>Front End Development</li>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-                <li>React</li>
-                <li>Node</li>
-            </ul>
+                {% for interes in interests %}
+                <li><b>{{interes}}</b></li>
+                {% endfor %}
+                </ul>
         </div>
     </div>
 </body>

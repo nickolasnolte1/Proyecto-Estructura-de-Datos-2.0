@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, url_for, redirect, flash, Response
 from flask.wrappers import Request
-from functions import crear_usuario, printear_notifications, printear_posts, users, agregar_intereses, printear_informacion, postsx, check, notifications, updatear_posts
+from functions import crear_usuario, printear_notifications, printear_posts, users, agregar_intereses, postsx, check, notifications, updatear_posts, info_username, BinarySearch
 import flask_profiler
 import re
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
@@ -47,13 +47,11 @@ def check(email):
 		return "Invalid Email"
 
 
-@app.route('/notifications')
-def noti():
-    return render_template('notifications.html')
 
-@app.route('/profile')
-def profile ():
-    return render_template('profile.html')
+@app.route('/profile/<userexists>')
+def profile (userexists):
+    username, email, interests=info_username(users,userexists)
+    return render_template('profile.html', username=username, email=email, interests=interests)
 
 @app.route('/' , methods = ["GET", "POST"])
 @flask_profiler.profile()
@@ -88,13 +86,14 @@ def categories(user_id):
 @app.route('/homepage/<user_id>', methods = ["GET", "POST"])
 @flask_profiler.profile()
 def home(user_id):
-    username, email, password, interests=printear_informacion(users,int(user_id))
+    username, email, password, interests=BinarySearch(users,int(user_id))
     postinfo=printear_posts(postsx)
     notifs=printear_notifications(notifications)
     if request.method == 'POST':
         if request.form['btn']=='Accept':
             friend="danielbehar"
             users.graph_edge(username, friend)
+            users.graph_edge(friend, username)
             users.disp_graph()
             users.generate_edges()
         if request.form['btn']=='post':
@@ -108,6 +107,12 @@ def home(user_id):
                 notifications.push("Post was published Successfully!")
             postinfo=updatear_posts(postsx)
             notifs=printear_notifications(notifications)
+        if request.form['btn']=='findfriend':
+            friend=request.form.get('friendtofind')
+            print(f"EL USUARIO BUSCADO ES:{friend}")
+            userexists=users.search_user(username,friend)
+            if userexists:
+                return redirect(url_for('profile', userexists=userexists))
     return render_template('homepage.html', username=username, email=email, password=password, interests=interests, postinfo=postinfo, notifs=notifs)
 
 
