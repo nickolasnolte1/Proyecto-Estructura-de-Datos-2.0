@@ -75,7 +75,7 @@ Tambien se utilizó la librería de cProfile para hacer profiling de las funcion
 # Unit Testing 
 
 Se realizaron 6 unit tests para probar las diferentes funciones.
-Estos tests se pueden encontrar en el documento llamada "testing.py"
+Estos tests se pueden encontrar en el documento llamada **[testing.py](testing.py)** 
 
 # Documento de Product Spec.
 https://docs.google.com/document/d/1F9c-QuyvVXn5SGp9ML6XHyUR90SC4buGXuOyTreqIgU/edit?usp=sharing
