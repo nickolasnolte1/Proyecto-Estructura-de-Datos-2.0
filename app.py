@@ -3,12 +3,9 @@ from flask.wrappers import Request
 from functions import crear_usuario, printear_notifications, printear_posts, users, agregar_intereses, postsx, check, notifications, updatear_posts, info_username, BinarySearch
 import flask_profiler
 import re
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
 import networkx as nx
 import matplotlib
 import matplotlib.pyplot as plt
-from datetime import datetime, timedelta
 from io import BytesIO
 
 matplotlib.use('Agg')
@@ -69,7 +66,6 @@ def signup():
                 flash("Passwords don't match", "warning")
         else:
             flash("Invalid email address", "warning")
-    print(users.users)
     return render_template('signup.html')
 
 @app.route('/categories/<user_id>', methods = ["GET", "POST"])
@@ -109,7 +105,6 @@ def home(user_id):
             notifs=printear_notifications(notifications)
         if request.form['btn']=='findfriend':
             friend=request.form.get('friendtofind')
-            print(f"EL USUARIO BUSCADO ES:{friend}")
             userexists=users.search_user(username,friend)
             if userexists:
                 return redirect(url_for('profile', userexists=userexists))

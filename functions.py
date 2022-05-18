@@ -47,7 +47,7 @@ class Heap:
     def insert(self, post, category, minutes):
         current_time = datetime.now()
         future_time = current_time + timedelta(minutes=int(minutes))
-        future_time_str = future_time.strftime('%m-%d-%Y %H:%M:%S.%f')
+        future_time_str = future_time.strftime('%m-%d-%Y %H:%M:%S')
         k=Post(future_time_str, post, category)
         self.heap_list.append(k)
         self.current_size += 1
@@ -96,41 +96,6 @@ postsx.insert("Ya salió el trailer de Thor Love and Thunder!", "Peliculas", 5)
 
 
 
-
-
-
-class Queue:
-    def __init__(self):
-        self.queue = []
-    # Add an element
-    def enqueue(self,dpostinfo, n, dcategory):
-        current_time = datetime.now()
-        future_time = current_time + timedelta(minutes=int(n))
-        future_time_str = future_time.strftime('%m-%d-%Y %H:%M:%S.%f')
-        dpostx=Post(future_time_str, dpostinfo, dcategory)
-        self.queue.append(dpostx)
-        ordenar=self.queue
-        ordenar.sort(key=lambda x: x.dateposted)
-        self.queue=ordenar
-
-    # Remove an element
-    def dequeue(self):
-        if len(self.queue) < 1:
-            return None
-        return self.queue.pop(0)
-
-
-    # Display  the queue
-    def display(self):
-        prueba=self.queue
-        prueba.sort(key=lambda x: x.dateposted)
-        for i in prueba:
-            print(f"Date posted:{i.dateposted}")
-            print(f"Date posted:{i.post}")
-            print(f"Date posted:{i.category}")
-
-    def size(self):
-        return len(self.queue)
 
 
 class Stack:
@@ -188,6 +153,7 @@ class Graph():
             for friend in self.friends[node]:
                 self.edges.append((node, friend))
 
+
     def search_user(self, start_user, key):
         visited = []
         queue = []     
@@ -207,7 +173,7 @@ class Graph():
         
 users=Graph()
 
-b=User(0, "esteban", "estebansamayoa@ufm.edu","12345", ["politica", "programacion"])
+b=User(0, "esteban", "estebansamayoa@ufm.edu","12345", [])
 c=User(1, "danielbehar", "danielbehar@ufm.edu","diosesmipastor", ["musica", "politica"])
 d=User(2, "nickonolte", "nickolasnolte@ufm.edu","bodoque33", ["programacion", "deportes"])
 e=User(3, "josereyes", "josereyes@ufm.edu","enano", ["deportes"])
@@ -229,8 +195,6 @@ users.graph_edge("danielbehar","nickonolte")
 # users.disp_graph()
 users.generate_edges()
 
-
-print(users.search_user("nickonolte", "danielbehar"))
 
 
 
@@ -300,7 +264,6 @@ def printear_posts(postsx):
     currenttime=datetime.now().strftime('%m-%d-%Y %H:%M:%S.%f')
     while (1):
         node=postsx.get_min()
-        print(node)
         if node.dateposted<=currenttime:
             lis=postsx.print_list
             lis.append(node)
