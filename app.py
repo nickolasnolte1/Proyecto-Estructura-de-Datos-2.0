@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, url_for, redirect, flash, Response
 from flask.wrappers import Request
 from functions import crear_usuario, printear_notifications, printear_posts, users, agregar_intereses, postsx, check, notifications, updatear_posts, info_username, BinarySearch
-import flask_profiler
 import re
 import networkx as nx
 import matplotlib
@@ -15,31 +14,13 @@ regex = r'\b[A-Za-z0-9_%+-.]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.config['flask_profiler'] = {
-    "enabled" : app.config['DEBUG'],
-    "storage" : {
-        "engine" : "sqlite"
-    },
-    "basicAuth" : {
-        "enabled" : True,
-        "username" : "admin",
-        "password" : "admin"
-    },
-    "ignore": [
-	    "^/static/.*"
-	]
 
-}
-app.secret_key = 'super secret key'
-app.config['SESSION_TYPE'] = 'filesystem'
 
-flask_profiler.init_app(app)
+
 
 def check(email):
-
 	if(re.fullmatch(regex, email)):
 		return "Valid Email"
-
 	else:
 		return "Invalid Email"
 
@@ -51,7 +32,6 @@ def profile (userexists):
     return render_template('profile.html', username=username, email=email, interests=interests)
 
 @app.route('/' , methods = ["GET", "POST"])
-@flask_profiler.profile()
 def signup():
     username = request.args.get("username")
     email = request.args.get("email")
@@ -69,7 +49,6 @@ def signup():
     return render_template('signup.html')
 
 @app.route('/categories/<user_id>', methods = ["GET", "POST"])
-@flask_profiler.profile()
 def categories(user_id):
     if request.method == 'POST':
         interests=request.form.getlist('check')
@@ -80,7 +59,6 @@ def categories(user_id):
 
 
 @app.route('/homepage/<user_id>', methods = ["GET", "POST"])
-@flask_profiler.profile()
 def home(user_id):
     username, email, password, interests=BinarySearch(users,int(user_id))
     postinfo=printear_posts(postsx)
