@@ -36,9 +36,9 @@
 * Ver posts realizados anteriormente.
 * Programar tiempos para realizar un post
 * Ver notificaciones de la página
-* Escribir un comentario en los posts
+* Agregar amigos
+* Bucsar información de amigos
 
-### El programa actualmente no se encuentra enlazado con ninguna base de datos, por lo que la función de Sign In todavía no está habilitada.
 
 #### ⚠️ **PARA PODER CORRER EL PROGRAMA, SE DEBE CORRER EL SIGUIENTE COMANDO EN LA TERMINAL:**
 
