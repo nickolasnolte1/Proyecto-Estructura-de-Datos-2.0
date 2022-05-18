@@ -51,6 +51,9 @@
 # Diagrama de casos de uso
 <img width="705" alt="image" src="https://user-images.githubusercontent.com/61555652/168938429-4fe39924-d9e4-40fd-b9e6-37c1d8e67498.png">
 
+# Grafos
+
+<img width="1347" alt="image" src="https://user-images.githubusercontent.com/61555652/168939331-eb2d421d-ab4e-4e96-bade-0050f8d603c2.png">
 
 
 # Profiling
