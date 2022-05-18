@@ -53,6 +53,7 @@
 
 # Grafos
 
+Mapa de los grafos generados en base a los amigos que se tienen agregados dentro de la aplicación. 
 <img width="1347" alt="image" src="https://user-images.githubusercontent.com/61555652/168939331-eb2d421d-ab4e-4e96-bade-0050f8d603c2.png">
 
 
