@@ -67,7 +67,7 @@ A continuación se adjunta una imagen del profiling.
 
 <img width="966" alt="image" src="https://user-images.githubusercontent.com/61555652/156972756-ba80b2b5-9229-43bc-a925-4ad1e48eacea.png">
 
-Tambien se utilizó cProfile para hacer profiling de las funciones que utiliza el programa. Estas se encuentran dentro de un archivo llamado functionsprofiling.py 
+Tambien se utilizó la librería de cProfile para hacer profiling de las funciones que utiliza el programa. Estas se encuentran dentro de un archivo llamado **[functionsprofiling.py](functionsprofiling.py)**
 
 
 
